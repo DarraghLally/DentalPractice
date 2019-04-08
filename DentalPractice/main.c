@@ -58,10 +58,20 @@ void main() {
 			//updatePatient(headPtr);
 			//Search with either Name or PPS
 			//Update details
-			printf("(1) Enter Name:\n(2) Enter PPS:\n");
-			scanf("%d", &editChoice);
-
-
+			do {
+				switch (editChoice) {
+				case 1:
+					//Search via Name
+					break;
+				case 2:
+					//Search via PPS
+					break;
+				default:
+					printf("Invalid choice, please try again.\n");
+				}
+				printf("(1) Enter Name:\n(2) Enter PPS:\n");
+				scanf("%d", &editChoice);
+			} while (editChoice!=1 || editChoice!=2);
 
 			break;
 		case 5:
