@@ -9,7 +9,7 @@ typedef struct node {
 	char dob[4];
 	char gender;
 	char email[31];
-	char kin[21];
+	char kin[21]; //change to two inputs?
 	char lastApp[9];
 	float weight;
 	float height;
@@ -31,7 +31,7 @@ void deleteElementAtStart(struct node ** top);
 void deleteElementAtEnd(struct node * top);
 void deleteElementAtPos(struct node * top, int position);
 void printList(struct node *top);
-void printSingle(struct node *top, char pps[9]);
+void printSingle(struct node *top, char pps[9]); //Print via search with PPS
 int listLength(struct node * top);
 int searchList(struct node * top, char pps[9]);
 

@@ -3,6 +3,7 @@
 #include<string.h>
 #include"linkedList.h"
 #include"validation.h"
+
 /*Function Definitions for Linked List*/
 
 void addElementAtStart(struct node ** top) {
@@ -371,13 +372,10 @@ void printList(struct node *top) {
 
 //Specific to searching via PPS number
 void printSingle(struct node *top, char pps[9]) {
-	//int found = 0;
 	struct node * temp = top;
 
 	while (temp != NULL) {
 		if (strcmp(temp->pps, pps) == 0) {
-			//found = 1;
-			//return found;
 			printf("***********************************************************************\n");
 			printf("PPS;\n%s\n\n", temp->pps);
 			printf("NAME:\n%s %s\n\n", temp->fName, temp->lName);
@@ -431,10 +429,9 @@ void printSingle(struct node *top, char pps[9]) {
 			default:
 				printf("EXCERCISE INPUT BROKEN\n");
 			}
-		}
+		}//if
 		temp = temp->NEXT;
-	}
-	//return found;
+	}//while
 }
 
 int listLength(struct node * top) {
