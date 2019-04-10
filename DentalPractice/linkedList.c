@@ -66,10 +66,14 @@ void addElementAtStart(struct node ** top) {
 	scanf("%s", newNode->kin);
 	printf("Enter Last appointment date:\nFormat: dd/mm/yy\n");
 	scanf("%s", newNode->lastApp);
-	printf("Enter Weight (kg):\n");
-	scanf("%f", &newNode->weight);
-	printf("Enter Height (cm):\n");
-	scanf("%f", &newNode->height);
+	do {
+		printf("Enter Weight (kg):\n");
+		scanf("%f", &newNode->weight);
+	} while (newNode->weight < 0);
+	do {
+		printf("Enter Height (cm):\n");
+		scanf("%f", &newNode->height);
+	} while (newNode->height < 0);
 	printf("Any Allergies to medication:\nFormat Y - Yes / N - No\n");
 	scanf(" %c", &newNode->allergies);
 
@@ -181,10 +185,14 @@ void addElementToEnd(struct node *top) {
 	scanf("%s", newNode->kin);
 	printf("Enter Last appointment date:\nFormat: dd/mm/yy\n");
 	scanf("%s", newNode->lastApp);
-	printf("Enter Weight:\n");
-	scanf("%f", &newNode->weight);
-	printf("Enter Height:\n");
-	scanf("%f", &newNode->height);
+	do {
+		printf("Enter Weight (kg):\n");
+		scanf("%f", &newNode->weight);
+	} while (newNode->weight < 0);
+	do {
+		printf("Enter Height (cm):\n");
+		scanf("%f", &newNode->height);
+	} while (newNode->height < 0);
 	printf("Any Allergies to medication:\nFormat Y - Yes / N - No\n");
 	scanf(" %c", &newNode->allergies);
 
