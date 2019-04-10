@@ -14,6 +14,9 @@ float BMI(float h, float w);
 void searchNameEdit(struct node *top, char first[11], char last[11]);
 void searchPPSEdit(struct node *top, char pps[9]);
 
+void filePrint(struct node *top);
+void reportPrint(struct node *top);
+
 ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N /////////////////
 
 void main() {
@@ -37,7 +40,10 @@ void main() {
 	scanf("%s", passWord);*/
 
 	do {
-		printf("(1) Add Patient\n(2) Display All Patients\n(3) Display Patient Details\n(4) Update Patient Details\n(5) Delete Patient\n(6) Generate Statistics\n(7) Create Report\n(8) List All Patients (Ordered by)\n(-1) Exit\n");
+		printf("---------------------------------------\n");
+		printf("(1) Add Patient\n(2) Display All Patients\n(3) Display Patient Details\n(4) Update Patient Details\n(5) Delete Patient\n"
+			"(6) Generate Statistics\n(7) Create Report\n(8) List All Patients (Ordered by)\n(-1) Exit\n");
+		printf("---------------------------------------\n\n");
 		scanf("%d", &menuChoice);
 
 		switch (menuChoice) {
@@ -104,14 +110,18 @@ void main() {
 			break;
 		case 7:
 			//Create Report.txt
+			reportPrint(headPtr);
+			printf("Report Generated...\n");
 			break;
 		case 8:
 			//List all patients by order of last appointment
 			printf("%f", BMI(185.4, 88.9));
 			break;
 		case -1:
+			filePrint(headPtr); //print database to file patient.txt
 			printf("Exiting...\n\n\n");
 			//Update patient files here
+			
 			break;
 		default:
 			//printf("MENU INPUT VALIDATION WRONG");
@@ -122,6 +132,103 @@ void main() {
 }//main()
 
 ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S /////////////////
+
+void reportPrint(struct node *top) {
+	//File pointer & open as patient.txt
+	FILE* output;
+	output = fopen("report.txt", "w");
+
+	struct node* temp;
+	temp = top;
+
+	char smokeReport[50];
+	char alcoReport[50];
+	char exerciseReport[50];
+
+	while (temp != NULL) {
+		//Formatting smoke integer values for report output for ease of reading
+		//if (temp->smoke == 1) {
+		//	smokeReport[50] = "None";
+		//}
+		//else if (temp->smoke == 2) {
+		//	smokeReport[50] = "Less than 10 per day";
+		//}
+		//else if (temp->smoke == 3) {
+		//	smokeReport[50] = "More than 10 per day";
+		//}
+		//else {
+		//	printf("ERROR in smoker question intake\n");
+		//}
+
+		////Formatting alcohol
+		//if (temp->alco == 1) {
+		//	alcoReport[50] = "None";
+		//}
+		//else if (temp->alco == 2) {
+		//	alcoReport[50] = "Less than 10 units per week";
+		//}
+		//else if (temp->alco == 3) {
+		//	alcoReport[50] = "More than 10 units per week";
+		//}
+		//else {
+		//	printf("ERROR in alcohol question intake\n");
+		//}
+
+		////Formatting exercise
+		//if (temp->exercise == 1) {
+		//	exerciseReport[50] = "Never";
+		//}
+		//else if (temp->exercise == 2) {
+		//	exerciseReport[50] = "Less than twice per week";
+		//}
+		//else if (temp->exercise == 3) {
+		//	exerciseReport[50] = "More than twice per week";
+		//}
+		//else {
+		//	exerciseReport[50] = "ERROR";
+		//	printf("ERROR in exercise question intake\n");
+		//}
+
+		//Print to file report.txt
+		fprintf(output, "PPS: \t%s\n", temp->pps);
+		fprintf(output, "Fname: \t\t%s\n", temp->fName);
+		fprintf(output, "Lname: \t\t%s\n", temp->lName);
+		fprintf(output, "DOB: \t%s\n", temp->dob);
+		fprintf(output, "GEN: \t%c\n", temp->gender);
+		fprintf(output, "EMAIL: \t%s\n", temp->email);
+		fprintf(output, "Kin: \t%s\n", temp->kin);
+		fprintf(output, "Last App: \t%s\n", temp->lastApp);
+		fprintf(output, "weight: \t%.2f\n", temp->weight);
+		fprintf(output, "height: \t%.2f\n", temp->height);
+		fprintf(output, "allergies: \t%c\n", temp->allergies);
+		fprintf(output, "smoke: \t%d\n", temp->smoke);
+		fprintf(output, "alcohol: \t%d\n", temp->alco);
+		fprintf(output, "exercise: \t%d\n", temp->exercise);
+
+		fprintf(output, "--------------------------------------------------------------------------------------------\n");
+		//point to next node
+		temp = temp->NEXT;
+	}
+	//Close file
+	fclose(output);
+}
+
+void filePrint(struct node *top) {
+	//File pointer & open as patient.txt
+	FILE* output;
+	output = fopen("patient.txt", "w");
+
+	struct node* temp;
+	temp = top;
+
+	while (temp != NULL) {
+		fprintf(output, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d\n", temp->pps, temp->fName, temp->lName, temp->dob, temp->gender, 
+			temp->email, temp->kin, temp->lastApp, temp->weight, temp->height, temp->allergies, temp->smoke, temp->alco, temp->exercise);
+		temp = temp->NEXT;
+	}
+	//Close file
+	fclose(output);
+}
 
 void searchPPSEdit(struct node *top, char pps[9]) {
 	struct node * temp = top;
@@ -138,7 +245,8 @@ void searchPPSEdit(struct node *top, char pps[9]) {
 	while (temp != NULL) {
 		if (strcmp(temp->pps, pps) == 0) {
 			do {
-				printf("(1) Edit First Name\n(2) Edit Last Name\n(3) Edit Gender\n(4) Edit Email\n(5) Edit Next Of Kin\n(6) Edit Weight\n(7) Edit Height\n(8) Edit Smoking Details\n(9) Edit Alcohol Details\n(10) Edit Exercise Details\n");
+				printf("(1) Edit First Name\n(2) Edit Last Name\n(3) Edit Gender\n(4) Edit Email\n(5) Edit Next Of Kin\n(6) Edit Weight\n"
+					"(7) Edit Height\n(8) Edit Smoking Details\n(9) Edit Alcohol Details\n(10) Edit Exercise Details\n(0) Main Menu\n");
 				scanf("%d", &choice);
 				switch (choice) {
 
@@ -278,7 +386,9 @@ void searchPPSEdit(struct node *top, char pps[9]) {
 					}
 					temp->exercise = exercise;
 					break;
-
+				case 0:
+					return;
+					break;
 				default:
 					printf("EDIT VIA PPS BROKEN\n");
 				}
@@ -303,7 +413,10 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 	while (temp != NULL) {
 		if (strcmp(temp->fName, first) == 0 && strcmp(temp->lName, last) == 0) {
 			do{
-				printf("(1) Edit First Name\n(2) Edit Last Name\n(3) Edit Gender\n(4) Edit Email\n(5) Edit Next Of Kin\n(6) Edit Weight\n(7) Edit Height\n(8) Edit Smoking Details\n(9) Edit Alcohol Details\n(10) Edit Exercise Details\n");
+				printf("---------------------------------------\n");
+				printf("(1) Edit First Name\n(2) Edit Last Name\n(3) Edit Gender\n(4) Edit Email\n(5) Edit Next Of Kin\n(6) Edit Weight\n"
+						"(7) Edit Height\n(8) Edit Smoking Details\n(9) Edit Alcohol Details\n(10) Edit Exercise Details\n(0) Main menu\n");
+				printf("---------------------------------------\n\n");
 				scanf("%d", &choice);
 				switch (choice) {
 
@@ -443,15 +556,17 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 						}
 						temp->exercise = exercise;
 						break;
-
+					case 0:
+						return;
+						break;
 					default:
 						printf("EDIT VIA NAME BROKEN\n");
 				}
-			} while (choice < 1 && choice > 10);
-		}
+			} while (choice < 0 && choice > 10);
+		}//if
 		temp = temp->NEXT;
-	}
-}
+	}//while
+}//searchNameEdit
 
 float BMI(float h, float w) {
 	//kg*M^2
