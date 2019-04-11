@@ -3,6 +3,7 @@
 #include<string.h>
 #include"linkedList.h"
 #include"validation.h"
+#include"search.h"
 
 /*Function Definitions for Linked List*/
 
@@ -113,6 +114,8 @@ void addElementAtStart(struct node ** top) {
 		valExercise = validMultiChoice(exercise);
 	}
 	newNode->exercise = exercise;
+
+	newNode->BMI = BMI(newNode->height, newNode->weight);
 
 	//New nodes NEXT points to top
 	newNode->NEXT = *top;
@@ -232,6 +235,8 @@ void addElementToEnd(struct node *top) {
 		valExercise = validMultiChoice(exercise);
 	}
 	newNode->exercise = exercise;
+
+	newNode->BMI = BMI(newNode->height, newNode->weight);
 
 	//Point end to NULL
 	newNode->NEXT = NULL;
@@ -374,6 +379,8 @@ void printList(struct node *top) {
 		default:
 			printf("EXCERCISE INPUT BROKEN\n");
 		}
+
+		printf("BMI: %.2f", temp->BMI);
 		temp = temp->NEXT;
 	}
 }
@@ -384,27 +391,27 @@ void printSingle(struct node *top, char pps[9]) {
 
 	while (temp != NULL) {
 		if (strcmp(temp->pps, pps) == 0) {
-			printf("***********************************************************************\n");
-			printf("PPS;\n%s\n\n", temp->pps);
-			printf("NAME:\n%s %s\n\n", temp->fName, temp->lName);
-			printf("DOB:\n%s\n\n", temp->dob);
-			printf("GENDER:\n %c\n\n", temp->gender);
-			printf("EMAIL:\n %s\n\n", temp->email);
-			printf("NEXT OF KIN:\n %s\n\n", temp->kin);
-			printf("LAST APPOINTMENT DATE:\n %s\n\n", temp->lastApp);
-			printf("WEIGHT - kg:\n %.3f\n\n", temp->weight);
-			printf("HEIGHT - cm:\n %.3f\n\n", temp->height);
-			printf("ALLERGIES TO MEDS:\n %c\n\n", temp->allergies);
+			printf("\n***********************************************************************\n");
+			printf("PPS: %s\n", temp->pps);
+			printf("NAME: %s %s\n", temp->fName, temp->lName);
+			printf("DOB: %s\n", temp->dob);
+			printf("GENDER: %c\n", temp->gender);
+			printf("EMAIL: %s\n", temp->email);
+			printf("NEXT OF KIN: %s\n", temp->kin);
+			printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
+			printf("WEIGHT - kg: %.3f\n", temp->weight);
+			printf("HEIGHT - cm: %.3f\n", temp->height);
+			printf("ALLERGIES TO MEDS: %c\n", temp->allergies);
 			
 			switch (temp->smoke) {
 			case 1:
-				printf("SMOKER:\nNo\n\n");
+				printf("SMOKER: No\n\n");
 				break;
 			case 2:
-				printf("SMOKER:\nLess than 10 per day\n\n");
+				printf("SMOKER: Less than 10 per day\n\n");
 				break;
 			case 3:
-				printf("SMOKER:\nMore than 10 per day\n\n");
+				printf("SMOKER: More than 10 per day\n\n");
 				break;
 			default:
 				printf("SMOKER INPUT BROKEN\n");
@@ -412,13 +419,13 @@ void printSingle(struct node *top, char pps[9]) {
 
 			switch (temp->alco) {
 			case 1:
-				printf("ALCOHOL:\nNone\n");
+				printf("ALCOHOL: None\n");
 				break;
 			case 2:
-				printf("ALCOHOL:\nLess than 10 units per week\n");
+				printf("ALCOHOL: Less than 10 units per week\n");
 				break;
 			case 3:
-				printf("ALCOHOL:\nMore than 10 units week\n");
+				printf("ALCOHOL: More than 10 units week\n");
 				break;
 			default:
 				printf("ALCOHOL INPUT BROKEN\n");
@@ -426,17 +433,19 @@ void printSingle(struct node *top, char pps[9]) {
 
 			switch (temp->exercise) {
 			case 1:
-				printf("EXCERCISE:\nNone\n");
+				printf("EXCERCISE: None\n");
 				break;
 			case 2:
-				printf("EXCERCISE:\nLess than 2 per week\n");
+				printf("EXCERCISE: Less than 2 per week\n");
 				break;
 			case 3:
-				printf("EXCERCISE:\nMore than 2 per week\n");
+				printf("EXCERCISE: More than 2 per week\n");
 				break;
 			default:
 				printf("EXCERCISE INPUT BROKEN\n");
 			}
+
+			printf("BMI: %.2f\n", temp->BMI);
 		}//if
 		temp = temp->NEXT;
 	}//while

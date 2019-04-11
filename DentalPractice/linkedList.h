@@ -17,6 +17,7 @@ typedef struct node {
 	int smoke;
 	int alco;
 	int exercise;
+	float BMI;
 
 	struct node* NEXT;
 }patient_t;
