@@ -1,16 +1,32 @@
-PPS: 	1234567A
-Fname: 		Darragh
-Lname: 		Lally
-DOB: 	1986Md@g.com
-GEN: 	M
-EMAIL: 	d@g.com
-Kin: 	Anita
-Last App: 	12/12/12
-weight: 	88.90
-height: 	185.40
-allergies: 	N
-smoke: 	1
-alcohol: 	1
-exercise: 	1
-BMI: 	2228238.00
+PPS: 1234567A
+Fname: Darragh
+Lname: Lally
+DOB: 1986
+Gender: M
+Email: d@g.com
+Next of kin: Anita
+Last App: 12/12/12
+Weight: 88.90
+Height: 185.40
+Allergies: N
+Smoke: 1
+Alcohol: 1
+Exercise: 1
+BMI: 25.86
+--------------------------------------------------------------------------------------------
+PPS: 7654321
+Fname: Anto
+Lname: Moore
+DOB: 1234
+Gender: M
+Email: a@g.com
+Next of kin: asd
+Last App: 12/12/12
+Weight: 123.00
+Height: 123.00
+Allergies: N
+Smoke: 2
+Alcohol: 2
+Exercise: 2
+BMI: 81.30
 --------------------------------------------------------------------------------------------
