@@ -6,7 +6,7 @@ typedef struct node {
 	char pps[9];
 	char fName[11];
 	char lName[11];
-	char dob[4];
+	char dob[5];
 	char gender;
 	char email[31];
 	char kin[21]; //change to two inputs?

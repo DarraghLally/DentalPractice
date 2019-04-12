@@ -3,6 +3,8 @@
 #include<string.h>
 #include"linkedList.h"
 #include"validation.h"
+#include"other.h"
+#include"search.h"
 
 int validEmail(char email[31]) {
 
