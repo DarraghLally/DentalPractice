@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="linkedList.c" />
+    <ClCompile Include="load.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="other.c" />
     <ClCompile Include="search.c" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="linkedList.h" />
+    <ClInclude Include="load.h" />
     <ClInclude Include="other.h" />
     <ClInclude Include="search.h" />
     <ClInclude Include="validation.h" />

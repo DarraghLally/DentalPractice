@@ -27,7 +27,6 @@ typedef struct node {
 //LinkedList
 void addElementAtStart(struct node **top);
 void addElementToEnd(struct node *top);
-//void addElementAtPos(struct node * top, int position);
 void deleteElementAtStart(struct node ** top);
 void deleteElementAtEnd(struct node * top);
 void deleteElementAtPos(struct node * top, int position);

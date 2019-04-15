@@ -5,6 +5,7 @@
 #include"validation.h"
 #include"other.h"
 #include"search.h"
+#include"load.h"
 
 void searchPPSEdit(struct node *top, char pps[9]) {
 	struct node * temp = top;
@@ -351,3 +352,17 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 		temp = temp->NEXT;
 	}//while
 }//searchNameEdit
+
+int findPos(struct node *top, char pps[9]) {
+	struct node * temp = top;
+	int count = 0;
+	while (temp != NULL) {
+		count++;
+		if (strcmp(temp->pps, pps) == 0) {
+			return count;
+		}
+		temp = temp->NEXT;
+	}//while
+	printf("Patient not found\n");
+	return;
+}
