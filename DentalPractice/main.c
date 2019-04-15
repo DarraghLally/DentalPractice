@@ -9,13 +9,11 @@
 #include"validation.h"
 #include"search.h"
 #include"other.h"
+#include"load.h"
 
 /*Function declarations*/
 void filePrint(struct node *top);
 void reportPrint(struct node *top);
-
-void loadFront(struct node **top, FILE* report);
-void loadEnd(struct node *top, FILE* report);
 
 ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N /////////////////
 
@@ -38,7 +36,7 @@ void main() {
 
 	//load patient report
 	if (readIn == NULL){
-		//No patient records found
+		//No file found
 		printf("\nPatient records not found!\n");
 	}
 	else{
@@ -87,7 +85,8 @@ void main() {
 			printList(headPtr);
 			break;
 		case 3:
-			//Search for patient via PPS
+			//Search for patient via PPS, print details
+			//add search via name
 			printf("Enter PPS to search: \n");
 			scanf("%s", searchPPS);
 			printSingle(headPtr, searchPPS);
@@ -104,7 +103,7 @@ void main() {
 					scanf("%s", fNameIn);
 					printf("Enter Last Name:\n");
 					scanf("%s", lNameIn);
-					searchNameEdit(headPtr, fNameIn, lNameIn); //Search and edit patient details via name
+					searchNameEdit(headPtr, fNameIn, lNameIn);
 					break;
 				case 2:
 					//Search via PPS
@@ -115,8 +114,6 @@ void main() {
 					}
 					else {
 						printf("Sorry the PPS does not exists in the Database\n");
-						
-						//Add option to add to database
 					}
 					break;
 				default:
@@ -127,12 +124,25 @@ void main() {
 
 			break;
 		case 5:
-			//deleteElementAtPos(headPtr, pps);
-			//Need to fix function to take in string pps and search using string functions
-
+			//Delete Patent via PPS
+			printf("Please enter PPS of Patient to be removed:\n");
+			scanf("%s", searchPPS);
+			int pos = findPos(headPtr, searchPPS);
+			if (pos == 1) {
+				deleteElementAtStart(&headPtr);
+				printf("Patient record deleted\n");
+			}
+			else if(pos<listLength(headPtr)){
+				deleteElementAtPos(headPtr, pos);
+				printf("Patient record deleted\n");
+			}
+			else {
+				break;
+			}
 			break;
 		case 6:
 			//Generate Stats
+
 			break;
 		case 7:
 			//Create Report.txt
@@ -141,8 +151,6 @@ void main() {
 			break;
 		case 8:
 			//List all patients by order of last appointment
-			/*printf("%.2f\n", BMI(185.4, 88.9));
-			printf("%.2f\n", BMI(headPtr->height, headPtr->weight));*/
 			break;
 		case -1:
 			filePrint(headPtr); //print database to file patient.txt
@@ -158,129 +166,6 @@ void main() {
 }//main()
 
 ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S /////////////////
-
-void loadFront(struct node **top, FILE* report){
-
-	//file input variables
-	int numRead;
-	char pps[9];
-	char fName[11];
-	char lName[11];
-	char dob[5];
-	char gender;
-	char email[31];
-	char kin[21]; //change to two inputs?
-	char lastApp[9];
-	float weight;
-	float height;
-	char allergies;
-	int smoke;
-	int alco;
-	int exercise;
-	float BMI;
-
-	//check number of entries
-	numRead = fscanf(report, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d %f", pps, fName, lName, dob, &gender, email, kin, 
-		lastApp, &weight, &height, &allergies, &smoke, &alco, &exercise, &BMI);
-
-	if (numRead == 15)
-	{
-		if (*top == NULL)
-		{
-			//set new node pointer
-			struct node* newNode;
-
-			//allocate memory for new node and set values
-			newNode = (struct node*)malloc(1 * sizeof(struct node));
-			strcpy(newNode->pps, pps);
-			strcpy(newNode->fName, fName);
-			strcpy(newNode->lName, lName);
-			strcpy(newNode->dob, dob);
-			newNode->gender = gender;
-			strcpy(newNode->email, email);
-			strcpy(newNode->kin, kin);
-			strcpy(newNode->lastApp, lastApp);
-			newNode->weight = weight;
-			newNode->height = height;
-			newNode->allergies = allergies;
-			newNode->smoke = smoke;
-			newNode->alco = alco;
-			newNode->exercise = exercise;
-			newNode->BMI = BMI;
-			
-			//next pointer is the "old" head of list
-			newNode->NEXT = *top;
-
-			//new head is the new node
-			*top = newNode;
-
-		}//if
-	}//if
-}//loadFront
-
-void loadEnd(struct node *top, FILE* report){
-
-	//file input variables
-	int numRead;
-	char pps[9];
-	char fName[11];
-	char lName[11];
-	char dob[5];
-	char gender;
-	char email[31];
-	char kin[21]; //change to two inputs?
-	char lastApp[9];
-	float weight;
-	float height;
-	char allergies;
-	int smoke;
-	int alco;
-	int exercise;
-	float BMI;
-
-	//check number of entries
-	numRead = fscanf(report, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d %f", pps, fName, lName, dob, &gender, email, kin,
-		lastApp, &weight, &height, &allergies, &smoke, &alco, &exercise, &BMI);
-
-	if (numRead == 15){
-
-		//set new node pointer
-		struct node* temp = top;
-		struct node* newNode;
-
-		//find end of list
-		while (temp->NEXT != NULL)
-		{
-			temp = temp->NEXT;
-		}
-
-		//allocate memory for new node and set values
-		newNode = (struct node*)malloc(1 * sizeof(struct node));
-		
-		strcpy(newNode->pps, pps);
-		strcpy(newNode->fName, fName);
-		strcpy(newNode->lName, lName);
-		strcpy(newNode->dob, dob);
-		newNode->gender = gender;
-		strcpy(newNode->email, email);
-		strcpy(newNode->kin, kin);
-		strcpy(newNode->lastApp, lastApp);
-		newNode->weight = weight;
-		newNode->height = height;
-		newNode->allergies = allergies;
-		newNode->smoke = smoke;
-		newNode->alco = alco;
-		newNode->exercise = exercise;
-		newNode->BMI = BMI;
-
-		//new node is end of list
-		newNode->NEXT = NULL;
-
-		//second last node points to new node
-		temp->NEXT = newNode;
-
-	}//if
-}//loadEnd
 
 void reportPrint(struct node *top) {
 	//File pointer & open as patient.txt

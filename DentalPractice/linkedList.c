@@ -5,6 +5,7 @@
 #include"validation.h"
 #include"search.h"
 #include"other.h"
+#include"load.h"
 
 /*Function Definitions for Linked List*/
 
@@ -47,11 +48,13 @@ void addElementAtStart(struct node ** top) {
 	scanf("%s", newNode->fName);
 	printf("Enter Last Name:\n");
 	scanf("%s", newNode->lName);
-	printf("Enter Year of Birth:\nFormat: yyyy\n");
-	scanf("%s", newNode->dob);
+	//Year born must be greater than 1900
+	do {
+		printf("Enter Year of Birth:\nFormat: yyyy\n");
+		scanf("%s", newNode->dob);
+	} while (newNode->dob<1900);
 	printf("Enter Gender:\nFormat: F - Female / M - Male\n");
 	scanf(" %c", &newNode->gender);
-
 	//Email validation - Must include '@' and '.com'
 	printf("Enter valid email:\n");
 	scanf("%s", emailAddress);
@@ -150,10 +153,21 @@ void addElementToEnd(struct node *top) {
 	ask if they want to update
 	*/
 	if (searchList(top, pps) == 1) {
+		int choice;
 		printf("Sorry the PPS alread exists in the Database\n");
-
-		//Add option to update patient here
-
+		printf("Do you wish to edit the patients details?\n(1) Yes\n(2) No\n");
+		scanf("%d", &choice);
+		switch (choice) {
+		case 1:
+			searchPPSEdit(top, pps);
+			break;
+		case 2: 
+			return;
+			break;
+		default:
+			printf("Incorrect choice\n");
+			break;
+		}
 		return; //Break out of function
 	}
 
@@ -168,8 +182,11 @@ void addElementToEnd(struct node *top) {
 	scanf("%s", newNode->fName);
 	printf("Enter Last Name:\n");
 	scanf("%s", newNode->lName);
-	printf("Enter Year of Birth:\nFormat: yyyy\n");
-	scanf("%s", newNode->dob);
+	//Year born must be greater than 1900
+	do {
+		printf("Enter Year of Birth:\nFormat: yyyy\n");
+		scanf("%s", newNode->dob);
+	} while (newNode->dob < 1900);
 	printf("Enter Gender:\nFormat: F - Female / M - Male\n");
 	scanf(" %c", &newNode->gender);
 
@@ -243,47 +260,6 @@ void addElementToEnd(struct node *top) {
 	newNode->NEXT = NULL;
 	temp->NEXT = newNode;
 }
-
-/*Add At Position*/
-//void addElementAtPos(struct node * top, int position) {
-//	int i;
-//	struct node * temp;
-//	struct node * prevTemp;
-//	struct node * newNode;
-//	char ID[10];
-//
-//	printf("Please enter ID of student: \n");
-//	scanf("%s", ID);
-//
-//	if (searchList(top, ID) == 1) {
-//		printf("Sorry the ID already exists\n");
-//		return;
-//	}
-//
-//	temp = top;
-//	for (i = 0; i < (position - 1); i++) {
-//		prevTemp = temp;
-//		temp = temp->NEXT;
-//	}
-//
-//	newNode = (struct node*)malloc(sizeof(struct node));
-//	printf("Enter Name of Student:\n");
-//	scanf("%s", newNode->name);
-//	printf("Enter age of Student:\n");
-//	scanf("%d", &newNode->age);
-//	strcpy(newNode->id, ID);
-//	//printf("Enter ID of Student:\n");
-//	//scanf("%s", newNode->id);
-//	printf("Enter average grade of Student:\n");
-//	scanf("%f", &newNode->avg);
-//	printf("Enter email of Student:\n");
-//	scanf("%s", newNode->email);
-//	printf("Enter mobile of Student:\n");
-//	scanf("%s", newNode->mobile);
-//
-//	newNode->NEXT = temp;
-//	prevTemp->NEXT = newNode;
-//}
 
 /*Delete nodes complete*/
 void deleteElementAtStart(struct node ** top) {
@@ -407,13 +383,13 @@ void printSingle(struct node *top, char pps[9]) {
 			
 			switch (temp->smoke) {
 			case 1:
-				printf("SMOKER: No\n\n");
+				printf("SMOKER: No\n");
 				break;
 			case 2:
-				printf("SMOKER: Less than 10 per day\n\n");
+				printf("SMOKER: Less than 10 per day\n");
 				break;
 			case 3:
-				printf("SMOKER: More than 10 per day\n\n");
+				printf("SMOKER: More than 10 per day\n");
 				break;
 			default:
 				printf("SMOKER INPUT BROKEN\n");
