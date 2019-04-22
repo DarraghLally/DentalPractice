@@ -7,6 +7,72 @@
 #include"search.h"
 #include"load.h"
 
+void searchName(struct node *top, char first[11], char last[11]) {
+	struct node * temp = top;
+
+	while (temp != NULL) {
+		if (strcmp(temp->fName, first) == 0 && strcmp(temp->lName, last) == 0) {
+			printf("\n***********************************************************************\n");
+			printf("PPS: %s\n", temp->pps);
+			printf("NAME: %s %s\n", temp->fName, temp->lName);
+			printf("DOB: %s\n", temp->dob);
+			printf("GENDER: %c\n", temp->gender);
+			printf("EMAIL: %s\n", temp->email);
+			printf("NEXT OF KIN: %s\n", temp->kin);
+			printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
+			printf("WEIGHT - kg: %.3f\n", temp->weight);
+			printf("HEIGHT - cm: %.3f\n", temp->height);
+			printf("ALLERGIES TO MEDS: %c\n", temp->allergies);
+
+			switch (temp->smoke) {
+			case 1:
+				printf("SMOKER: No\n");
+				break;
+			case 2:
+				printf("SMOKER: Less than 10 per day\n");
+				break;
+			case 3:
+				printf("SMOKER: More than 10 per day\n");
+				break;
+			default:
+				printf("SMOKER INPUT BROKEN\n");
+			}
+
+			switch (temp->alco) {
+			case 1:
+				printf("ALCOHOL: None\n");
+				break;
+			case 2:
+				printf("ALCOHOL: Less than 10 units per week\n");
+				break;
+			case 3:
+				printf("ALCOHOL: More than 10 units week\n");
+				break;
+			default:
+				printf("ALCOHOL INPUT BROKEN\n");
+			}
+
+			switch (temp->exercise) {
+			case 1:
+				printf("EXCERCISE: None\n");
+				break;
+			case 2:
+				printf("EXCERCISE: Less than 2 per week\n");
+				break;
+			case 3:
+				printf("EXCERCISE: More than 2 per week\n");
+				break;
+			default:
+				printf("EXCERCISE INPUT BROKEN\n");
+			}
+
+			printf("BMI: %.2f\n", temp->BMI);
+		}//if
+		temp = temp->NEXT;
+	}//while
+	printf("Sorry, name not found\n\n");
+}
+
 void searchPPSEdit(struct node *top, char pps[9]) {
 	struct node * temp = top;
 	int choice;
@@ -353,6 +419,7 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 	}//while
 }//searchNameEdit
 
+//Find position in list passed on patient pps, return value and use for delete function
 int findPos(struct node *top, char pps[9]) {
 	struct node * temp = top;
 	int count = 0;

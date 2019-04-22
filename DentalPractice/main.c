@@ -15,6 +15,8 @@
 void filePrint(struct node *top);
 void reportPrint(struct node *top);
 
+void printStats(struct node *top, int total);
+
 ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N /////////////////
 
 void main() {
@@ -29,6 +31,10 @@ void main() {
 	char searchPPS[9];
 	char userName[20];//Login
 	char passWord[20];//Login
+	int searchChoice; //search option 3
+	char searchFirst[11];
+	char searchLast[11];
+	int totalPatients;
 	
 	//open employee file
 	FILE* readIn;
@@ -80,17 +86,33 @@ void main() {
 				addElementToEnd(headPtr);
 			}
 			break;
+
 		case 2:
 			//Print all patients
 			printList(headPtr);
 			break;
+
 		case 3:
 			//Search for patient via PPS, print details
-			//add search via name
-			printf("Enter PPS to search: \n");
-			scanf("%s", searchPPS);
-			printSingle(headPtr, searchPPS);
+			//add search via name:  void searchName(headPtr, char first[11], char last[11])
+			do {
+				printf("(1) Search via Name\n(2) Search via PPS\n(0) Back\n");
+				scanf("%d", &searchChoice);
+				if (searchChoice == 1) {
+					printf("Enter First Name:\n");
+					scanf("%s", searchFirst);
+					printf("Enter Last Name:\n");
+					scanf("%s", searchLast);
+					searchName(headPtr, searchFirst, searchLast);
+				}
+				else if (searchChoice == 2) {
+					printf("Enter PPS to search: \n");
+					scanf("%s", searchPPS);
+					printSingle(headPtr, searchPPS);
+				}
+			} while (searchChoice!=0);
 			break;
+
 		case 4:
 			//Search and Edit with either Name or PPS	
 			do{
@@ -121,8 +143,8 @@ void main() {
 					break;
 				}
 			} while (editChoice != 1 && editChoice != 2);
-
 			break;
+
 		case 5:
 			//Delete Patent via PPS
 			printf("Please enter PPS of Patient to be removed:\n");
@@ -140,15 +162,19 @@ void main() {
 				break;
 			}
 			break;
+
 		case 6:
 			//Generate Stats
-
+			totalPatients = listLength(headPtr);
+			printStats(headPtr, totalPatients);				
 			break;
+
 		case 7:
 			//Create Report.txt
 			reportPrint(headPtr);
 			printf("Report Generated...\n\n");
 			break;
+
 		case 8:
 			//List all patients by order of last appointment
 			break;
@@ -166,6 +192,85 @@ void main() {
 }//main()
 
 ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S /////////////////
+
+void printStats(struct node *top, int total) {
+	struct node * temp = top;
+	int statChoice, smokeChoice, exerciseChoice; 
+	int patientTotal = total;
+	int totalOne = 0;
+	int totalTwo = 0; 
+	int totalThree = 0;
+	int totalFour = 0;
+	float aVal = 0;
+	float bVal = 0;
+	float cVal = 0;
+	float dVal = 0;
+
+	//Second option - Smoke or Exercise
+	printf("Generate BMI statistics based on one of the following:\n(1) Cigarette Intake\n(2) Exercise Amount\n(0) Back\n\n");
+	scanf("%d", &statChoice);	
+	//Smoke 
+	if (statChoice == 1) {
+		printf("(1) No smoking\n(2) Less than 10 per day\n(3) More than 10 per day\n\n");
+		scanf("%d", &smokeChoice);
+		while (temp != NULL) {
+			if (smokeChoice == temp->smoke && temp->BMI < 18.5) {
+				totalOne++;
+			}
+			if (smokeChoice == temp->smoke && temp->BMI < 25) {
+				totalTwo++;
+			}
+			if (smokeChoice == temp->smoke && temp->BMI < 30) {
+				totalThree++;
+			}
+			if (smokeChoice == temp->smoke && temp->BMI > 30) {
+				totalFour++;
+			}
+			//Move to next patient
+			temp = temp->NEXT;
+		}
+		
+		//Find %'s
+		aVal = ((float) patientTotal / (float) totalOne) * 100;
+		bVal = ((float) patientTotal / (float) totalTwo) * 100;
+		cVal = ((float) patientTotal / (float) totalThree) * 100;
+		dVal = ((float) patientTotal / (float) totalFour) * 100;
+
+		printf("DEBUG SMOKER STATS\n");
+		printf("aVal: %f\n", aVal);
+		printf("bVal: %f\n", bVal);
+		printf("cVal: %f\n", cVal);
+		printf("dVal: %f\n", dVal);
+	}
+
+	//Exercise
+	if (statChoice == 2) {
+		printf("(1) No exercise\n(2) Less than twice per week\n(3) More than twice per\n");
+		scanf("%d", &exerciseChoice);
+		while (temp != NULL) {
+			if (exerciseChoice == temp->exercise && temp->BMI < 18.5) {
+				totalOne++;
+			}
+			if (exerciseChoice == temp->exercise && temp->BMI < 25) {
+				totalTwo++;
+			}
+			if (exerciseChoice == temp->exercise && temp->BMI < 30) {
+				totalThree++;
+			}
+			if (exerciseChoice == temp->exercise && temp->BMI > 30) {
+				totalFour++;
+			}
+			//Move to next patient
+			temp = temp->NEXT;
+		}
+		printf("DEBUG EXERCISE STATS\n");
+		printf("DEBUG: total one stats %d\n", totalOne);
+		printf("DEBUG: total two stats %d\n", totalTwo);
+		printf("DEBUG: total three stats %d\n", totalThree);
+		printf("DEBUG: total four stats %d\n", totalFour);
+	}
+}
+
 
 void reportPrint(struct node *top) {
 	//File pointer & open as patient.txt
