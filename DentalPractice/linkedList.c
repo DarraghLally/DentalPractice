@@ -48,14 +48,10 @@ void addElementAtStart(struct node ** top) {
 	scanf("%s", newNode->fName);
 	printf("Enter Last Name:\n");
 	scanf("%s", newNode->lName);
-	//Year born must be greater than 1900
-	do {
-		printf("Enter Year of Birth:\nFormat: yyyy\n");
-		scanf("%s", newNode->dob);
-	} while (newNode->dob<1900);
+	printf("Enter Year of Birth:\nFormat: yyyy\n");
+	scanf("%s", newNode->dob);
 	printf("Enter Gender:\nFormat: F - Female / M - Male\n");
 	scanf(" %c", &newNode->gender);
-	//Email validation - Must include '@' and '.com'
 	printf("Enter valid email:\n");
 	scanf("%s", emailAddress);
 	valEmail = validEmail(emailAddress);
@@ -182,11 +178,8 @@ void addElementToEnd(struct node *top) {
 	scanf("%s", newNode->fName);
 	printf("Enter Last Name:\n");
 	scanf("%s", newNode->lName);
-	//Year born must be greater than 1900
-	do {
-		printf("Enter Year of Birth:\nFormat: yyyy\n");
-		scanf("%s", newNode->dob);
-	} while (newNode->dob < 1900);
+	printf("Enter Year of Birth:\nFormat: yyyy\n");
+	scanf("%s", newNode->dob);
 	printf("Enter Gender:\nFormat: F - Female / M - Male\n");
 	scanf(" %c", &newNode->gender);
 
