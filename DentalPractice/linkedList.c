@@ -6,6 +6,7 @@
 #include"search.h"
 #include"other.h"
 #include"load.h"
+#include"outputs.h"
 
 /*Function Definitions for Linked List*/
 
