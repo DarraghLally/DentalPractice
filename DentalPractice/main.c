@@ -231,10 +231,10 @@ void printStats(struct node *top, int total) {
 		}
 		
 		//Find %'s
-		aVal = ((float) patientTotal / (float) totalOne) * 100;
-		bVal = ((float) patientTotal / (float) totalTwo) * 100;
-		cVal = ((float) patientTotal / (float) totalThree) * 100;
-		dVal = ((float) patientTotal / (float) totalFour) * 100;
+		aVal = ((float) totalOne /(float) patientTotal) * 100;
+		bVal = ((float) totalTwo / (float)patientTotal) * 100;
+		cVal = ((float) totalThree / (float)patientTotal) * 100;
+		dVal = ((float) totalFour / (float) patientTotal) * 100;
 
 		printf("DEBUG SMOKER STATS\n");
 		printf("aVal: %f\n", aVal);
@@ -263,11 +263,17 @@ void printStats(struct node *top, int total) {
 			//Move to next patient
 			temp = temp->NEXT;
 		}
+		//Find %'s
+		aVal = ((float)totalOne / (float)patientTotal) * 100;
+		bVal = ((float)totalTwo / (float)patientTotal) * 100;
+		cVal = ((float)totalThree / (float)patientTotal) * 100;
+		dVal = ((float)totalFour / (float)patientTotal) * 100;
+
 		printf("DEBUG EXERCISE STATS\n");
-		printf("DEBUG: total one stats %d\n", totalOne);
-		printf("DEBUG: total two stats %d\n", totalTwo);
-		printf("DEBUG: total three stats %d\n", totalThree);
-		printf("DEBUG: total four stats %d\n", totalFour);
+		printf("aVal: %f\n", aVal);
+		printf("bVal: %f\n", bVal);
+		printf("cVal: %f\n", cVal);
+		printf("dVal: %f\n", dVal);
 	}
 }
 
