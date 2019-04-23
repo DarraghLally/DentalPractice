@@ -6,6 +6,7 @@
 #include"other.h"
 #include"search.h"
 #include"load.h"
+#include"outputs.h"
 
 void searchName(struct node *top, char first[11], char last[11]) {
 	struct node * temp = top;

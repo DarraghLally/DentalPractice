@@ -6,6 +6,7 @@
 #include"other.h"
 #include"search.h"
 #include"load.h"
+#include"outputs.h"
 
 void loadFront(struct node **top, FILE* report) {
 

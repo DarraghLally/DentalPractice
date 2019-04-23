@@ -10,12 +10,10 @@
 #include"search.h"
 #include"other.h"
 #include"load.h"
+#include"outputs.h"
 
 /*Function declarations*/
-void filePrint(struct node *top);
-void reportPrint(struct node *top);
 
-void printStats(struct node *top, int total);
 
 ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N /////////////////
 
@@ -62,12 +60,6 @@ void main() {
 		//close file
 		fclose(readIn);
 	}//else
-
-	//Check UserName and Password
-	/*printf("Enter Username:\n");
-	scanf("%s", userName);
-	printf("Enter Password:\n");
-	scanf("%s", passWord);*/
 
 	do {
 		printf("---------------------------------------\n");
@@ -196,189 +188,7 @@ void main() {
 
 ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S /////////////////
 
-void printStats(struct node *top, int total) {
-	struct node * temp = top;
-	int statChoice, smokeChoice, exerciseChoice; 
-	int patientTotal = total;
-	int totalOne = 0;
-	int totalTwo = 0; 
-	int totalThree = 0;
-	int totalFour = 0;
-	float aVal = 0;
-	float bVal = 0;
-	float cVal = 0;
-	float dVal = 0;
 
-	//Second option - Smoke or Exercise
-	printf("Generate BMI statistics based on one of the following:\n(1) Cigarette Intake\n(2) Exercise Amount\n(0) Back\n\n");
-	scanf("%d", &statChoice);	
-	//Smoke 
-	if (statChoice == 1) {
-		printf("(1) No smoking\n(2) Less than 10 per day\n(3) More than 10 per day\n\n");
-		scanf("%d", &smokeChoice);
-		while (temp != NULL) {
-			if (smokeChoice == temp->smoke && temp->BMI < 18.5) {
-				totalOne++;
-			}
-			if (smokeChoice == temp->smoke && temp->BMI < 25) {
-				totalTwo++;
-			}
-			if (smokeChoice == temp->smoke && temp->BMI < 30) {
-				totalThree++;
-			}
-			if (smokeChoice == temp->smoke && temp->BMI > 30) {
-				totalFour++;
-			}
-			//Move to next patient
-			temp = temp->NEXT;
-		}
-		
-		//Find %'s
-		aVal = ((float) totalOne /(float) patientTotal) * 100;
-		bVal = ((float) totalTwo / (float)patientTotal) * 100;
-		cVal = ((float) totalThree / (float)patientTotal) * 100;
-		dVal = ((float) totalFour / (float) patientTotal) * 100;
-
-		printf("DEBUG SMOKER STATS\n");
-		printf("aVal: %f\n", aVal);
-		printf("bVal: %f\n", bVal);
-		printf("cVal: %f\n", cVal);
-		printf("dVal: %f\n", dVal);
-	}
-
-	//Exercise
-	if (statChoice == 2) {
-		printf("(1) No exercise\n(2) Less than twice per week\n(3) More than twice per\n");
-		scanf("%d", &exerciseChoice);
-		while (temp != NULL) {
-			if (exerciseChoice == temp->exercise && temp->BMI < 18.5) {
-				totalOne++;
-			}
-			if (exerciseChoice == temp->exercise && temp->BMI < 25) {
-				totalTwo++;
-			}
-			if (exerciseChoice == temp->exercise && temp->BMI < 30) {
-				totalThree++;
-			}
-			if (exerciseChoice == temp->exercise && temp->BMI > 30) {
-				totalFour++;
-			}
-			//Move to next patient
-			temp = temp->NEXT;
-		}
-		//Find %'s
-		aVal = ((float)totalOne / (float)patientTotal) * 100;
-		bVal = ((float)totalTwo / (float)patientTotal) * 100;
-		cVal = ((float)totalThree / (float)patientTotal) * 100;
-		dVal = ((float)totalFour / (float)patientTotal) * 100;
-
-		printf("DEBUG EXERCISE STATS\n");
-		printf("aVal: %f\n", aVal);
-		printf("bVal: %f\n", bVal);
-		printf("cVal: %f\n", cVal);
-		printf("dVal: %f\n", dVal);
-	}
-}
-
-
-void reportPrint(struct node *top) {
-	//File pointer & open as patient.txt
-	FILE* output;
-	output = fopen("report.txt", "w");
-
-	struct node* temp;
-	temp = top;
-
-	char smokeReport[50];
-	char alcoReport[50];
-	char exerciseReport[50];
-
-	while (temp != NULL) {
-		//Formatting smoke integer values for report output for ease of reading
-		//if (temp->smoke == 1) {
-		//	strcpy(smokeReport, "None");
-		//}
-		//else if (temp->smoke == 2) {
-		//	strcpy(smokeReport, "Less than 10 per day");
-		//}
-		//else if (temp->smoke == 3) {
-		//	//smokeReport[50] = "More than 10 per day";
-		//	strcpy(smokeReport, "More than 10 per day");
-		//}
-		//else {
-		//	printf("ERROR in smoker question intake\n");
-		//}
-
-		////Formatting alcohol
-		//if (temp->alco == 1) {
-		//	alcoReport[50] = "None";
-		//}
-		//else if (temp->alco == 2) {
-		//	alcoReport[50] = "Less than 10 units per week";
-		//}
-		//else if (temp->alco == 3) {
-		//	alcoReport[50] = "More than 10 units per week";
-		//}
-		//else {
-		//	printf("ERROR in alcohol question intake\n");
-		//}
-
-		////Formatting exercise
-		//if (temp->exercise == 1) {
-		//	exerciseReport[50] = "Never";
-		//}
-		//else if (temp->exercise == 2) {
-		//	exerciseReport[50] = "Less than twice per week";
-		//}
-		//else if (temp->exercise == 3) {
-		//	exerciseReport[50] = "More than twice per week";
-		//}
-		//else {
-		//	exerciseReport[50] = "ERROR";
-		//	printf("ERROR in exercise question intake\n");
-		//}
-
-		//Print to file report.txt
-		fprintf(output, "PPS: %s\n", temp->pps);
-		fprintf(output, "Fname: %s\n", temp->fName);
-		fprintf(output, "Lname: %s\n", temp->lName);
-		fprintf(output, "DOB: %s\n", temp->dob);
-		fprintf(output, "Gender: %c\n", temp->gender);
-		fprintf(output, "Email: %s\n", temp->email);
-		fprintf(output, "Next of kin: %s\n", temp->kin);
-		fprintf(output, "Last App: %s\n", temp->lastApp);
-		fprintf(output, "Weight: %.2f\n", temp->weight);
-		fprintf(output, "Height: %.2f\n", temp->height);
-		fprintf(output, "Allergies: %c\n", temp->allergies);
-		fprintf(output, "Smoke: %d\n", temp->smoke);
-		fprintf(output, "Alcohol: %d\n", temp->alco);
-		fprintf(output, "Exercise: %d\n", temp->exercise);
-		fprintf(output, "BMI: %.2f\n", temp->BMI);
-
-		fprintf(output, "--------------------------------------------------------------------------------------------\n");
-		//point to next node
-		temp = temp->NEXT;
-	}
-	//Close file
-	fclose(output);
-}
-
-void filePrint(struct node *top) {
-	//File pointer & open as patient.txt
-	FILE* output;
-	output = fopen("patient.txt", "w");
-
-	struct node* temp;
-	temp = top;
-
-	while (temp != NULL) {
-		fprintf(output, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d %f\n", temp->pps, temp->fName, temp->lName, temp->dob, temp->gender, 
-			temp->email, temp->kin, temp->lastApp, temp->weight, temp->height, temp->allergies, temp->smoke, temp->alco, temp->exercise, temp->BMI);
-		temp = temp->NEXT;
-	}
-	//Close file
-	fclose(output);
-}
 
 
 
