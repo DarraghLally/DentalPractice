@@ -77,6 +77,7 @@ void main() {
 		scanf("%d", &menuChoice);
 
 		switch (menuChoice) {
+
 		case 1:
 			//If the database is empty, add at start. Otherwise add to end
 			if (headPtr == NULL) { 
@@ -178,11 +179,13 @@ void main() {
 		case 8:
 			//List all patients by order of last appointment
 			break;
+
 		case -1:
 			filePrint(headPtr); //print database to file patient.txt
 			printf("Exiting...\n\n\n");
 						
 			break;
+
 		default:
 			//printf("MENU INPUT VALIDATION WRONG");
 			break;
