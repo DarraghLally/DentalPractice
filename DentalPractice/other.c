@@ -6,6 +6,7 @@
 #include"other.h"
 #include"search.h"
 #include"load.h"
+#include"outputs.h"
 
 float BMI(float h, float w) {
 	// BMI = kg/(M^M) where M is height in meters

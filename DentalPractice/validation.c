@@ -5,6 +5,7 @@
 #include"validation.h"
 #include"other.h"
 #include"search.h"
+#include"outputs.h"
 
 int validEmail(char email[31]) {
 

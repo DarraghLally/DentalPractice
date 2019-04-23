@@ -143,6 +143,7 @@
     <ClCompile Include="load.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="other.c" />
+    <ClCompile Include="outputs.c" />
     <ClCompile Include="search.c" />
     <ClCompile Include="validation.c" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="linkedList.h" />
     <ClInclude Include="load.h" />
     <ClInclude Include="other.h" />
+    <ClInclude Include="outputs.h" />
     <ClInclude Include="search.h" />
     <ClInclude Include="validation.h" />
   </ItemGroup>
