@@ -56,12 +56,14 @@ void printStats(struct node *top, int total) {
 		cVal = ((float)totalThree / (float)patientTotal) * 100;
 		dVal = ((float)totalFour / (float)patientTotal) * 100;
 
+		//Print to console
 		printf("SMOKER STATS\n");
-		printf("aVal: %.2f\n", aVal);
-		printf("bVal: %.2f\n", bVal);
-		printf("cVal: %.2f\n", cVal);
-		printf("dVal: %.2f\n\n", dVal);
+		printf("A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
+		printf("B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
+		printf("C: %% of patients with BMI less than 30 -> %.2f%%\n", cVal);
+		printf("D: %% of patients with BMI greater than 30 -> %.2f%%\n\n", dVal);
 
+		//Print to file - stats.txt
 		fprintf(output, "SMOKER STATS\n");
 		fprintf(output, "A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
 		fprintf(output, "B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
@@ -95,12 +97,14 @@ void printStats(struct node *top, int total) {
 		cVal = ((float)totalThree / (float)patientTotal) * 100;
 		dVal = ((float)totalFour / (float)patientTotal) * 100;
 
+		//Console print
 		printf("EXERCISE STATS\n");
-		printf("aVal: %.2f\n", aVal);
-		printf("bVal: %.2f\n", bVal);
-		printf("cVal: %.2f\n", cVal);
-		printf("dVal: %.2f\n\n", dVal);
+		printf("A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
+		printf("B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
+		printf("C: %% of patients with BMI less than 30 -> %.2f%%\n", cVal);
+		printf("D: %% of patients with BMI greater than 30 -> %.2f%%\n\n", dVal);
 
+		//File print
 		fprintf(output, "EXERCISE STATS\n");
 		fprintf(output, "A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
 		fprintf(output, "B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
@@ -132,7 +136,7 @@ void reportPrint(struct node *top) {
 		fprintf(output, "DOB: %s\n", temp->dob);
 		fprintf(output, "Gender: %c\n", temp->gender);
 		fprintf(output, "Email: %s\n", temp->email);
-		fprintf(output, "Next of kin: %s\n", temp->kin);
+		fprintf(output, "Next of kin: %s %s\n", temp->fKin, temp->lKin);
 		fprintf(output, "Last App: %s\n", temp->lastApp);
 		fprintf(output, "Weight: %.2f\n", temp->weight);
 		fprintf(output, "Height: %.2f\n", temp->height);
@@ -158,8 +162,8 @@ void filePrint(struct node *top) {
 	temp = top;
 
 	while (temp != NULL) {
-		fprintf(output, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d %f\n", temp->pps, temp->fName, temp->lName, temp->dob, temp->gender,
-			temp->email, temp->kin, temp->lastApp, temp->weight, temp->height, temp->allergies, temp->smoke, temp->alco, temp->exercise, temp->BMI);
+		fprintf(output, "%s %s %s %s %c %s %s %s %s %f %f %c %d %d %d %f\n", temp->pps, temp->fName, temp->lName, temp->dob, temp->gender,
+			temp->email, temp->fKin, temp->lKin, temp->lastApp, temp->weight, temp->height, temp->allergies, temp->smoke, temp->alco, temp->exercise, temp->BMI);
 		temp = temp->NEXT;
 	}
 	//Close file

@@ -19,7 +19,7 @@ void searchName(struct node *top, char first[11], char last[11]) {
 			printf("DOB: %s\n", temp->dob);
 			printf("GENDER: %c\n", temp->gender);
 			printf("EMAIL: %s\n", temp->email);
-			printf("NEXT OF KIN: %s\n", temp->kin);
+			printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
 			printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
 			printf("WEIGHT - kg: %.3f\n", temp->weight);
 			printf("HEIGHT - cm: %.3f\n", temp->height);
@@ -132,9 +132,11 @@ void searchPPSEdit(struct node *top, char pps[9]) {
 
 				case 5:
 					//Next of kin
-					printf("Current next of Kin: %s", temp->kin);
-					printf("Enter new next of kin:\n");
-					scanf("%s", temp->kin);
+					printf("Current next of Kin: %s %s", temp->fKin, temp->lKin);
+					printf("Enter new First name:\n");
+					scanf("%s", temp->fKin);
+					printf("Enter new Last name:\n");
+					scanf("%s", temp->lKin);
 					break;
 
 				case 6:
@@ -306,9 +308,11 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 
 				case 5:
 					//Next of kin
-					printf("Current next of Kin: %s", temp->kin);
-					printf("Enter new next of kin:\n");
-					scanf("%s", temp->kin);
+					printf("Current next of Kin: %s %s", temp->fKin, temp->lKin);
+					printf("Enter new First name:\n");
+					scanf("%s", temp->fKin);
+					printf("Enter new Last name:\n");
+					scanf("%s", temp->lKin);
 					break;
 
 				case 6:
@@ -412,9 +416,9 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 					return;
 					break;
 				default:
-					printf("EDIT VIA NAME BROKEN\n");
+					printf("Invalid Choice, please try again...\n");
 				}
-			} while (choice < 0 && choice > 10);
+			} while (choice!=0);
 		}//if
 		temp = temp->NEXT;
 	}//while

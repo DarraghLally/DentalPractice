@@ -64,8 +64,11 @@ void addElementAtStart(struct node ** top) {
 	}
 	strcpy(newNode->email, emailAddress);
 
-	printf("Enter Next of Kin:\n");
-	scanf("%s", newNode->kin);
+	printf("Next of Kin:\n");
+	printf("Enter First Name:\n");
+	scanf("%s", newNode->fKin);
+	printf("Enter Second Name:\n");
+	scanf("%s", newNode->lKin);
 	printf("Enter Last appointment date:\nFormat: dd/mm/yy\n");
 	scanf("%s", newNode->lastApp);
 	do {
@@ -196,8 +199,11 @@ void addElementToEnd(struct node *top) {
 	}
 	strcpy(newNode->email, emailAddress);
 
-	printf("Enter Next of Kin:\n");
-	scanf("%s", newNode->kin);
+	printf("Next of Kin:\n");
+	printf("Enter First Name:\n");
+	scanf("%s", newNode->fKin);
+	printf("Enter Second Name:\n");
+	scanf("%s", newNode->lKin);
 	printf("Enter Last appointment date:\nFormat: dd/mm/yy\n");
 	scanf("%s", newNode->lastApp);
 	do {
@@ -303,7 +309,7 @@ void printList(struct node *top) {
 		printf("DOB: %s\n", temp->dob);
 		printf("GENDER: %c\n", temp->gender);
 		printf("EMAIL: %s\n", temp->email);
-		printf("NEXT OF KIN: %s\n", temp->kin);
+		printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
 		printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
 		printf("WEIGHT - kg: %.3f\n", temp->weight);
 		printf("HEIGHT - cm: %.3f\n", temp->height);
@@ -369,7 +375,7 @@ void printSingle(struct node *top, char pps[9]) {
 			printf("DOB: %s\n", temp->dob);
 			printf("GENDER: %c\n", temp->gender);
 			printf("EMAIL: %s\n", temp->email);
-			printf("NEXT OF KIN: %s\n", temp->kin);
+			printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
 			printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
 			printf("WEIGHT - kg: %.3f\n", temp->weight);
 			printf("HEIGHT - cm: %.3f\n", temp->height);

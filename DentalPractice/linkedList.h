@@ -9,7 +9,8 @@ typedef struct node {
 	char dob[5];
 	char gender;
 	char email[31];
-	char kin[21]; //change to two inputs?
+	char fKin[11];
+	char lKin[11];
 	char lastApp[9];
 	float weight;
 	float height;
