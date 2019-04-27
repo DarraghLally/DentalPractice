@@ -1,6 +1,7 @@
 //Advanced Procedural Project
 //Dental Practice Patient Database
 //Darragh Lally - G00220290
+//Visual Studio 2017
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -11,9 +12,6 @@
 #include"other.h"
 #include"load.h"
 #include"outputs.h"
-
-/*Function declarations*/
-
 
 ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N ///////////////// M A I N \\\\\\\\\\\\\\\\\ M A I N /////////////////
 
@@ -28,7 +26,7 @@ void main() {
 	struct node* headPtr = NULL;
 	char searchPPS[9];
 	char userName[20];//Login
-	char passWord[20];//Login
+	char passWord[7];//Login
 	int searchChoice; //search option 3
 	char searchFirst[11];
 	char searchLast[11];
@@ -87,7 +85,6 @@ void main() {
 
 		case 3:
 			//Search for patient via PPS, print details
-			//add search via name:  void searchName(headPtr, char first[11], char last[11])
 			do {
 				printf("(1) Search via Name\n(2) Search via PPS\n(0) Back\n");
 				scanf("%d", &searchChoice);
@@ -173,13 +170,13 @@ void main() {
 			break;
 
 		case -1:
-			filePrint(headPtr); //print database to file patient.txt
-			printf("Exiting...\n\n\n");
-						
+			//print database to file patient.txt
+			filePrint(headPtr); 
+			printf("Exiting...\n\n\n");					
 			break;
 
 		default:
-			//printf("MENU INPUT VALIDATION WRONG");
+			
 			break;
 		}
 		

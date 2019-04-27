@@ -18,7 +18,8 @@ void loadFront(struct node **top, FILE* report) {
 	char dob[5];
 	char gender;
 	char email[31];
-	char kin[21]; //change to two inputs?
+	char fKin[11];
+	char lKin[11];
 	char lastApp[9];
 	float weight;
 	float height;
@@ -29,10 +30,10 @@ void loadFront(struct node **top, FILE* report) {
 	float BMI;
 
 	//check number of entries
-	numRead = fscanf(report, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d %f", pps, fName, lName, dob, &gender, email, kin,
+	numRead = fscanf(report, "%s %s %s %s %c %s %s %s %s %f %f %c %d %d %d %f", pps, fName, lName, dob, &gender, email, fKin, lKin,
 		lastApp, &weight, &height, &allergies, &smoke, &alco, &exercise, &BMI);
 
-	if (numRead == 15)
+	if (numRead == 16)
 	{
 		if (*top == NULL)
 		{
@@ -47,7 +48,8 @@ void loadFront(struct node **top, FILE* report) {
 			strcpy(newNode->dob, dob);
 			newNode->gender = gender;
 			strcpy(newNode->email, email);
-			strcpy(newNode->kin, kin);
+			strcpy(newNode->fKin, fKin);
+			strcpy(newNode->lKin, lKin);
 			strcpy(newNode->lastApp, lastApp);
 			newNode->weight = weight;
 			newNode->height = height;
@@ -75,7 +77,8 @@ void loadEnd(struct node *top, FILE* report) {
 	char dob[5];
 	char gender;
 	char email[31];
-	char kin[21]; //change to two inputs?
+	char fKin[11];
+	char lKin[11];
 	char lastApp[9];
 	float weight;
 	float height;
@@ -86,10 +89,10 @@ void loadEnd(struct node *top, FILE* report) {
 	float BMI;
 
 	//check number of entries
-	numRead = fscanf(report, "%s %s %s %s %c %s %s %s %f %f %c %d %d %d %f", pps, fName, lName, dob, &gender, email, kin,
+	numRead = fscanf(report, "%s %s %s %s %c %s %s %s %s %f %f %c %d %d %d %f", pps, fName, lName, dob, &gender, email, fKin, lKin,
 		lastApp, &weight, &height, &allergies, &smoke, &alco, &exercise, &BMI);
 
-	if (numRead == 15) {
+	if (numRead == 16) {
 
 		//set new node pointer
 		struct node* temp = top;
@@ -110,7 +113,8 @@ void loadEnd(struct node *top, FILE* report) {
 		strcpy(newNode->dob, dob);
 		newNode->gender = gender;
 		strcpy(newNode->email, email);
-		strcpy(newNode->kin, kin);
+		strcpy(newNode->fKin, fKin);
+		strcpy(newNode->lKin, lKin);
 		strcpy(newNode->lastApp, lastApp);
 		newNode->weight = weight;
 		newNode->height = height;

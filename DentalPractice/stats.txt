@@ -1,16 +1,6 @@
 SMOKER STATS
-A: % of patients with BMI less than 18.5 - 0.00
-B: % of patients with BMI less than 25 - 25.00
-C: % of patients with BMI less than 30 - 0.00
-D: % of patients with BMI greater than 30 - 50.00
-EXERCISE STATS
 A: % of patients with BMI less than 18.5 -> 0.00%
-B: % of patients with BMI less than 25 -> 0.00%
+B: % of patients with BMI less than 25 -> 33.33%
 C: % of patients with BMI less than 30 -> 0.00%
-D: % of patients with BMI greater than 30 -> 25.00%
-EXERCISE STATS
-A: % of patients with BMI less than 18.5 -> 0.00%
-B: % of patients with BMI less than 25 -> 0.00%
-C: % of patients with BMI less than 30 -> 20.00%
-D: % of patients with BMI greater than 30 -> 20.00%
+D: % of patients with BMI greater than 30 -> 0.00%
 
