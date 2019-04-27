@@ -7,11 +7,13 @@
 #include"search.h"
 #include"outputs.h"
 
+//Email Validation - Must include @ and .com
 int validEmail(char email[31]) {
 
 	int len = strlen(email);
 	int valEmail = 0;
 
+	//Check array for @ symbol. Add to count if found
 	for (int i = 0; i < len; i++) {
 		if (email[i] == '@') {
 			valEmail++;
@@ -19,18 +21,22 @@ int validEmail(char email[31]) {
 		}
 	}
 
+	//Check array for . at index-4 position, add to count if found
 	if (email[len - 4] == '.') {
 		valEmail++;
 	}
 
+	//Check array for c at index-3 position, add to count if found
 	if (email[len - 3] == 'c') {
 		valEmail++;
 	}
 
+	//Check array for c at index-2 position, add to count if found
 	if (email[len - 2] == 'o') {
 		valEmail++;
 	}
 
+	//Check array for c at index-1 position, add to count if found
 	if (email[len - 1] == 'm') {
 		valEmail++;
 	}
@@ -39,6 +45,7 @@ int validEmail(char email[31]) {
 	return valEmail;
 }
 
+//Vaildation for multi choice resposes to questions.
 int validMultiChoice(int input) {
 	int val = 0;
 

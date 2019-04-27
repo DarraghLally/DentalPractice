@@ -8,6 +8,7 @@
 #include"load.h"
 #include"outputs.h"
 
+//Calculate BMI
 float BMI(float h, float w) {
 	// BMI = kg/(M^M) where M is height in meters
 	float hM = h / 100; //hM = height in Meters

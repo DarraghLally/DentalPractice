@@ -32,9 +32,7 @@ void deleteElementAtStart(struct node ** top);
 void deleteElementAtEnd(struct node * top);
 void deleteElementAtPos(struct node * top, int position);
 void printList(struct node *top);
-void printSingle(struct node *top, char pps[9]); //Print via search with PPS
 int listLength(struct node * top);
-int searchList(struct node * top, char pps[9]);
 
 
 #endif // !LINKED_LIST

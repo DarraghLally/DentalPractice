@@ -8,6 +8,90 @@
 #include"load.h"
 #include"outputs.h"
 
+//Search Database for patient via PPS, return the position in the database
+int searchList(struct node * top, char pps[9]) {
+	int found = 0;
+	struct node * temp = top;
+
+	//Search until PPS is encountered, adding to count each time. Return count when found, indicates position in linked list
+	while (temp != NULL) {
+		if (strcmp(temp->pps, pps) == 0) {
+			found = 1;
+			return found;
+		}
+		temp = temp->NEXT;
+	}
+	return found;
+}
+
+//Specific to searching via PPS number
+void printSingle(struct node *top, char pps[9]) {
+	struct node * temp = top;
+
+	//Search untill PPS found, print details to console
+	while (temp != NULL) {
+		if (strcmp(temp->pps, pps) == 0) {
+			printf("\n***********************************************************************\n");
+			printf("PPS: %s\n", temp->pps);
+			printf("NAME: %s %s\n", temp->fName, temp->lName);
+			printf("DOB: %s\n", temp->dob);
+			printf("GENDER: %c\n", temp->gender);
+			printf("EMAIL: %s\n", temp->email);
+			printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
+			printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
+			printf("WEIGHT - kg: %.3f\n", temp->weight);
+			printf("HEIGHT - cm: %.3f\n", temp->height);
+			printf("ALLERGIES TO MEDS: %c\n", temp->allergies);
+
+			switch (temp->smoke) {
+			case 1:
+				printf("SMOKER: No\n");
+				break;
+			case 2:
+				printf("SMOKER: Less than 10 per day\n");
+				break;
+			case 3:
+				printf("SMOKER: More than 10 per day\n");
+				break;
+			default:
+				printf("SMOKER INPUT BROKEN\n");
+			}
+
+			switch (temp->alco) {
+			case 1:
+				printf("ALCOHOL: None\n");
+				break;
+			case 2:
+				printf("ALCOHOL: Less than 10 units per week\n");
+				break;
+			case 3:
+				printf("ALCOHOL: More than 10 units week\n");
+				break;
+			default:
+				printf("ALCOHOL INPUT BROKEN\n");
+			}
+
+			switch (temp->exercise) {
+			case 1:
+				printf("EXCERCISE: None\n");
+				break;
+			case 2:
+				printf("EXCERCISE: Less than 2 per week\n");
+				break;
+			case 3:
+				printf("EXCERCISE: More than 2 per week\n");
+				break;
+			default:
+				printf("EXCERCISE INPUT BROKEN\n");
+			}
+
+			printf("BMI: %.2f\n", temp->BMI);
+		}//if
+		temp = temp->NEXT;
+	}//while
+}
+
+//Search and print patent via name
 void searchName(struct node *top, char first[11], char last[11]) {
 	struct node * temp = top;
 
@@ -68,12 +152,20 @@ void searchName(struct node *top, char first[11], char last[11]) {
 			}
 
 			printf("BMI: %.2f\n", temp->BMI);
+
+			//If found get out of function after printing
+			return;
 		}//if
+
+		//Point to next patient
 		temp = temp->NEXT;
 	}//while
+
+	//If not found
 	printf("Sorry, name not found\n\n");
 }
 
+//Search and edit patient via PPS number
 void searchPPSEdit(struct node *top, char pps[9]) {
 	struct node * temp = top;
 	int choice;
@@ -248,6 +340,7 @@ void searchPPSEdit(struct node *top, char pps[9]) {
 	}
 }
 
+//Search and edit patient via name
 void searchNameEdit(struct node *top, char first[11], char last[11]) {
 	struct node * temp = top;
 	int choice;
