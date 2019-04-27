@@ -8,7 +8,10 @@
 #include"load.h"
 #include"outputs.h"
 
+//Function for Menu Option 6 - Generate Stats
 void printStats(struct node *top, int total) {
+
+	//Variables
 	struct node * temp = top;
 	int statChoice, smokeChoice, exerciseChoice;
 	int patientTotal = total;
@@ -26,14 +29,21 @@ void printStats(struct node *top, int total) {
 	output = fopen("stats.txt", "a");
 
 
-	//Second option - Smoke or Exercise
+	//Generate on either: Smoke or Exercise
 	printf("Generate BMI statistics based on one of the following:\n(1) Cigarette Intake\n(2) Exercise Amount\n(0) Back\n\n");
 	scanf("%d", &statChoice);
+
 	//Smoke 
 	if (statChoice == 1) {
+
+		//Prompt and read choice
 		printf("(1) No smoking\n(2) Less than 10 per day\n(3) More than 10 per day\n\n");
 		scanf("%d", &smokeChoice);
+
+		//Go through database
 		while (temp != NULL) {
+
+			//Add to a total if conditions are met
 			if (smokeChoice == temp->smoke && temp->BMI <= 18.5) {
 				totalOne++;
 			}
@@ -50,7 +60,7 @@ void printStats(struct node *top, int total) {
 			temp = temp->NEXT;
 		}
 
-		//Find %'s
+		//Find and store %'s
 		aVal = ((float)totalOne / (float)patientTotal) * 100;
 		bVal = ((float)totalTwo / (float)patientTotal) * 100;
 		cVal = ((float)totalThree / (float)patientTotal) * 100;
@@ -116,19 +126,23 @@ void printStats(struct node *top, int total) {
 	fclose(output);
 }
 
+//Print User Readable Report on all patients and their details to file - report.txt
 void reportPrint(struct node *top) {
+
 	//File pointer & open as patient.txt
 	FILE* output;
 	output = fopen("report.txt", "w");
 
+	//Variables
 	struct node* temp;
 	temp = top;
-
 	char smokeReport[50];
 	char alcoReport[50];
 	char exerciseReport[50];
 
+	//Go through database
 	while (temp != NULL) {
+
 		//Print to file report.txt
 		fprintf(output, "PPS: %s\n", temp->pps);
 		fprintf(output, "Fname: %s\n", temp->fName);
@@ -146,6 +160,7 @@ void reportPrint(struct node *top) {
 		fprintf(output, "Exercise: %d\n", temp->exercise);
 		fprintf(output, "BMI: %.2f\n", temp->BMI);
 		fprintf(output, "--------------------------------------------------------------------------------------------\n");
+
 		//point to next node
 		temp = temp->NEXT;
 	}
@@ -153,7 +168,9 @@ void reportPrint(struct node *top) {
 	fclose(output);
 }
 
+//Print database to file
 void filePrint(struct node *top) {
+
 	//File pointer & open as patient.txt
 	FILE* output;
 	output = fopen("patient.txt", "w");
@@ -161,9 +178,14 @@ void filePrint(struct node *top) {
 	struct node* temp;
 	temp = top;
 
+	//Go through database
 	while (temp != NULL) {
+
+		//Print patient variables to file
 		fprintf(output, "%s %s %s %s %c %s %s %s %s %f %f %c %d %d %d %f\n", temp->pps, temp->fName, temp->lName, temp->dob, temp->gender,
 			temp->email, temp->fKin, temp->lKin, temp->lastApp, temp->weight, temp->height, temp->allergies, temp->smoke, temp->alco, temp->exercise, temp->BMI);
+
+		//Point to next patient
 		temp = temp->NEXT;
 	}
 	//Close file

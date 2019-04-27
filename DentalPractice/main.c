@@ -46,11 +46,11 @@ void main() {
 		while (!feof(readIn)){
 			//check if head pointer in null
 			if (headPtr == NULL){
-				//head pointer is empty (not loaded)
+				//First time around set the head pointer
 				loadFront(&headPtr, readIn);
 			}
 			else{
-				//list already contains items
+				//Next time load frmo the end
 				loadEnd(headPtr, readIn);
 			}
 		}//while

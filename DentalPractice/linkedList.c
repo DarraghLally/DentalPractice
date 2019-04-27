@@ -8,51 +8,49 @@
 #include"load.h"
 #include"outputs.h"
 
-/*Function Definitions for Linked List*/
-
+//Add patient, only used if no patients exist
 void addElementAtStart(struct node ** top) {
 
+	//Variables
 	struct node* newNode;
 	char pps[9];
-
 	char emailAddress[31];
 	int valEmail = 0;
-
 	int smoke;
 	int valSmoke = 0;
-
 	int alco;
 	int valAlco = 0;
-
 	int exercise;
 	int valExercise = 0;
+	int updatePPS;
 
+	//Prompt and read PPS
 	printf("Please enter PPS of Patient: \nFormat: 1234567A\n");
 	scanf("%s", pps);
 
-	/*
-	If patient PPS is already saved
-	ask if they want to update
-	*/
-	if (searchList(*top, pps) == 1) {
-		printf("Sorry the PPS alread exists in the Database\n");
-
-		//Add option to update patient here
-
-		return; //Break out of function
-	}
-
 	//Add new patient node
 	newNode = (struct node*)malloc(1 * sizeof(struct node));
-	strcpy(newNode->pps, pps); //copy pps from search into struct 
+
+	//copy pps from search into struct 
+	strcpy(newNode->pps, pps); 
+
+	//First name
 	printf("Enter First Name:\n");
 	scanf("%s", newNode->fName);
+
+	//Last name
 	printf("Enter Last Name:\n");
 	scanf("%s", newNode->lName);
+
+	//Year of birth
 	printf("Enter Year of Birth:\nFormat: yyyy\n");
 	scanf("%s", newNode->dob);
+
+	//Gender
 	printf("Enter Gender:\nFormat: F - Female / M - Male\n");
 	scanf(" %c", &newNode->gender);
+
+	//Prompt, read and validate email address
 	printf("Enter valid email:\n");
 	scanf("%s", emailAddress);
 	valEmail = validEmail(emailAddress);
@@ -64,24 +62,33 @@ void addElementAtStart(struct node ** top) {
 	}
 	strcpy(newNode->email, emailAddress);
 
+	//Next of kin, first and last
 	printf("Next of Kin:\n");
 	printf("Enter First Name:\n");
 	scanf("%s", newNode->fKin);
 	printf("Enter Second Name:\n");
 	scanf("%s", newNode->lKin);
+
+	//Last appointment date
 	printf("Enter Last appointment date:\nFormat: dd/mm/yy\n");
 	scanf("%s", newNode->lastApp);
+
+	//Dont allow weights of zero or less
 	do {
 		printf("Enter Weight (kg):\n");
 		scanf("%f", &newNode->weight);
 	} while (newNode->weight < 0);
+
+	//Dont allow heights of zero or less
 	do {
 		printf("Enter Height (cm):\n");
 		scanf("%f", &newNode->height);
 	} while (newNode->height < 0);
+
+	//Allergies to meds
 	printf("Any Allergies to medication:\nFormat Y - Yes / N - No\n");
 	scanf(" %c", &newNode->allergies);
-
+	
 	/*Multiple choice responses w/ input validation*/
 	//Cigerette intake
 	printf("How many Cigerettes per Day? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
@@ -119,6 +126,7 @@ void addElementAtStart(struct node ** top) {
 	}
 	newNode->exercise = exercise;
 
+	//Set BMI according to patients weight and height
 	newNode->BMI = BMI(newNode->height, newNode->weight);
 
 	//New nodes NEXT points to top
@@ -127,31 +135,27 @@ void addElementAtStart(struct node ** top) {
 	*top = newNode;
 }
 
+//Add patient, used every time but the first
 void addElementToEnd(struct node *top) {
+
+	//Variables
 	struct node* temp;
 	struct node* newNode;
 	temp = top;
 	char pps[9];
-
 	char emailAddress[31];
 	int valEmail = 0;
-
 	int smoke;
 	int valSmoke = 0;
-
 	int alco;
 	int valAlco = 0;
-
 	int exercise;
 	int valExercise = 0;
 
 	printf("Please enter PPS of Patient: \nFormat: 1234567A\n");
 	scanf("%s", pps);
 
-	/*
-	If patient PPS is already saved
-	ask if they want to update
-	*/
+	//If patient PPS is already save ask if they want to update
 	if (searchList(top, pps) == 1) {
 		int choice;
 		printf("Sorry the PPS alread exists in the Database\n");
@@ -171,6 +175,7 @@ void addElementToEnd(struct node *top) {
 		return; //Break out of function
 	}
 
+	//Find end
 	while (temp->NEXT != NULL) {
 		temp = temp->NEXT;
 	}
@@ -214,10 +219,12 @@ void addElementToEnd(struct node *top) {
 		printf("Enter Height (cm):\n");
 		scanf("%f", &newNode->height);
 	} while (newNode->height < 0);
+
+
 	printf("Any Allergies to medication:\nFormat Y - Yes / N - No\n");
 	scanf(" %c", &newNode->allergies);
 
-	/*Multiple choice responses w/ input validation*/
+	//Multiple choice responses w/ input validation
 	//Cigerette intake
 	printf("How many Cigerettes per Day? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
 	scanf("%d", &smoke);
@@ -261,7 +268,7 @@ void addElementToEnd(struct node *top) {
 	temp->NEXT = newNode;
 }
 
-/*Delete nodes complete*/
+//Delete from start
 void deleteElementAtStart(struct node ** top) {
 	struct node * temp;
 	temp = *top;
@@ -269,6 +276,7 @@ void deleteElementAtStart(struct node ** top) {
 	free(temp);
 }
 
+//Delete from end
 void deleteElementAtEnd(struct node * top) {
 	struct node* temp;
 	struct node * prevTemp;
@@ -283,6 +291,7 @@ void deleteElementAtEnd(struct node * top) {
 
 }
 
+//Delete from Position, position found through patient PPS number
 void deleteElementAtPos(struct node * top, int position) {
 	int i;
 	struct node * temp;
@@ -299,6 +308,7 @@ void deleteElementAtPos(struct node * top, int position) {
 	free(temp);
 }
 
+//Print Patient details to screen - Option 2
 void printList(struct node *top) {
 	struct node* temp;
 	temp = top;
@@ -363,72 +373,7 @@ void printList(struct node *top) {
 	}
 }
 
-//Specific to searching via PPS number
-void printSingle(struct node *top, char pps[9]) {
-	struct node * temp = top;
-
-	while (temp != NULL) {
-		if (strcmp(temp->pps, pps) == 0) {
-			printf("\n***********************************************************************\n");
-			printf("PPS: %s\n", temp->pps);
-			printf("NAME: %s %s\n", temp->fName, temp->lName);
-			printf("DOB: %s\n", temp->dob);
-			printf("GENDER: %c\n", temp->gender);
-			printf("EMAIL: %s\n", temp->email);
-			printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
-			printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
-			printf("WEIGHT - kg: %.3f\n", temp->weight);
-			printf("HEIGHT - cm: %.3f\n", temp->height);
-			printf("ALLERGIES TO MEDS: %c\n", temp->allergies);
-			
-			switch (temp->smoke) {
-			case 1:
-				printf("SMOKER: No\n");
-				break;
-			case 2:
-				printf("SMOKER: Less than 10 per day\n");
-				break;
-			case 3:
-				printf("SMOKER: More than 10 per day\n");
-				break;
-			default:
-				printf("SMOKER INPUT BROKEN\n");
-			}
-
-			switch (temp->alco) {
-			case 1:
-				printf("ALCOHOL: None\n");
-				break;
-			case 2:
-				printf("ALCOHOL: Less than 10 units per week\n");
-				break;
-			case 3:
-				printf("ALCOHOL: More than 10 units week\n");
-				break;
-			default:
-				printf("ALCOHOL INPUT BROKEN\n");
-			}
-
-			switch (temp->exercise) {
-			case 1:
-				printf("EXCERCISE: None\n");
-				break;
-			case 2:
-				printf("EXCERCISE: Less than 2 per week\n");
-				break;
-			case 3:
-				printf("EXCERCISE: More than 2 per week\n");
-				break;
-			default:
-				printf("EXCERCISE INPUT BROKEN\n");
-			}
-
-			printf("BMI: %.2f\n", temp->BMI);
-		}//if
-		temp = temp->NEXT;
-	}//while
-}
-
+//Return the length of the database
 int listLength(struct node * top) {
 	struct node * temp;
 	int count = 0;
@@ -440,17 +385,5 @@ int listLength(struct node * top) {
 	return count;
 }
 
-int searchList(struct node * top, char pps[9]) {
-	int found = 0;
-	struct node * temp = top;
 
-	while (temp != NULL) {
-		if (strcmp(temp->pps, pps) == 0) {
-			found = 1;
-			return found;
-		}
-		temp = temp->NEXT;
-	}
-	return found;
-}
 

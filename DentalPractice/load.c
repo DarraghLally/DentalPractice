@@ -8,6 +8,7 @@
 #include"load.h"
 #include"outputs.h"
 
+//Load database from front
 void loadFront(struct node **top, FILE* report) {
 
 	//file input variables
@@ -40,7 +41,7 @@ void loadFront(struct node **top, FILE* report) {
 			//set new node pointer
 			struct node* newNode;
 
-			//allocate memory for new node and set values
+			//allocate memory for new node and set patient variables
 			newNode = (struct node*)malloc(1 * sizeof(struct node));
 			strcpy(newNode->pps, pps);
 			strcpy(newNode->fName, fName);
@@ -59,17 +60,18 @@ void loadFront(struct node **top, FILE* report) {
 			newNode->exercise = exercise;
 			newNode->BMI = BMI;
 
+			//Point to next patient
 			newNode->NEXT = *top;
-
 			*top = newNode;
 
 		}//if
 	}//if
 }//loadFront
 
+//Load Database from end
 void loadEnd(struct node *top, FILE* report) {
 
-	//file input variables
+	//Variables
 	int numRead;
 	char pps[9];
 	char fName[11];
@@ -104,9 +106,8 @@ void loadEnd(struct node *top, FILE* report) {
 			temp = temp->NEXT;
 		}
 
-		//allocate memory for new node
+		//allocate memory for new node and set patient variables
 		newNode = (struct node*)malloc(1 * sizeof(struct node));
-
 		strcpy(newNode->pps, pps);
 		strcpy(newNode->fName, fName);
 		strcpy(newNode->lName, lName);
@@ -124,10 +125,8 @@ void loadEnd(struct node *top, FILE* report) {
 		newNode->exercise = exercise;
 		newNode->BMI = BMI;
 
-		//new node is end of list
-		newNode->NEXT = NULL;
-
-		//old last points to new last
+		//point to next patient
+		newNode->NEXT = NULL;	
 		temp->NEXT = newNode;
 
 	}//if
