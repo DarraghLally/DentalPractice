@@ -31,7 +31,6 @@ void addElementToEnd(struct node *top);
 void deleteElementAtStart(struct node ** top);
 void deleteElementAtEnd(struct node * top);
 void deleteElementAtPos(struct node * top, int position);
-void printList(struct node *top);
 int listLength(struct node * top);
 
 

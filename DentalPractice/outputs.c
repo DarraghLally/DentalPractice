@@ -8,6 +8,71 @@
 #include"load.h"
 #include"outputs.h"
 
+//Print Patient details to screen - Option 2
+void printList(struct node *top) {
+	struct node* temp;
+	temp = top;
+	while (temp != NULL) {
+		printf("---------------------------------------\n\n");
+		printf("PPS: %s\n", temp->pps);
+		printf("NAME: %s %s\n", temp->fName, temp->lName);
+		printf("DOB: %s\n", temp->dob);
+		printf("GENDER: %c\n", temp->gender);
+		printf("EMAIL: %s\n", temp->email);
+		printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
+		printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
+		printf("WEIGHT - kg: %.3f\n", temp->weight);
+		printf("HEIGHT - cm: %.3f\n", temp->height);
+		printf("ALLERGIES TO MEDS: %c\n", temp->allergies);
+
+		switch (temp->smoke) {
+		case 1:
+			printf("SMOKER: No\n");
+			break;
+		case 2:
+			printf("SMOKER: Less than 10 per day\n");
+			break;
+		case 3:
+			printf("SMOKER: More than 10 per day\n");
+			break;
+		default:
+			printf("SMOKER INPUT BROKEN\n");
+		}
+
+		switch (temp->alco) {
+		case 1:
+			printf("ALCOHOL: None\n");
+			break;
+		case 2:
+			printf("ALCOHOL: Less than 10 units per week\n");
+			break;
+		case 3:
+			printf("ALCOHOL: More than 10 units week\n");
+			break;
+		default:
+			printf("ALCOHOL INPUT BROKEN\n");
+		}
+
+		switch (temp->exercise) {
+		case 1:
+			printf("EXCERCISE: None\n");
+			break;
+		case 2:
+			printf("EXCERCISE: Less than 2 per week\n");
+			break;
+		case 3:
+			printf("EXCERCISE: More than 2 per week\n");
+			break;
+		default:
+			printf("EXCERCISE INPUT BROKEN\n");
+		}
+
+		printf("BMI: %.2f\n", temp->BMI);
+
+		temp = temp->NEXT;
+	}
+}
+
 //Function for Menu Option 6 - Generate Stats
 void printStats(struct node *top, int total) {
 
@@ -159,7 +224,7 @@ void reportPrint(struct node *top) {
 		fprintf(output, "Alcohol: %d\n", temp->alco);
 		fprintf(output, "Exercise: %d\n", temp->exercise);
 		fprintf(output, "BMI: %.2f\n", temp->BMI);
-		fprintf(output, "--------------------------------------------------------------------------------------------\n");
+		fprintf(output, "---------------------------------------\n");
 
 		//point to next node
 		temp = temp->NEXT;

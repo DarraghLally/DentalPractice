@@ -31,7 +31,7 @@ void printSingle(struct node *top, char pps[9]) {
 	//Search untill PPS found, print details to console
 	while (temp != NULL) {
 		if (strcmp(temp->pps, pps) == 0) {
-			printf("\n***********************************************************************\n");
+			printf("\n---------------------------------------\n");
 			printf("PPS: %s\n", temp->pps);
 			printf("NAME: %s %s\n", temp->fName, temp->lName);
 			printf("DOB: %s\n", temp->dob);
@@ -97,7 +97,7 @@ void searchName(struct node *top, char first[11], char last[11]) {
 
 	while (temp != NULL) {
 		if (strcmp(temp->fName, first) == 0 && strcmp(temp->lName, last) == 0) {
-			printf("\n***********************************************************************\n");
+			printf("\n---------------------------------------\n");
 			printf("PPS: %s\n", temp->pps);
 			printf("NAME: %s %s\n", temp->fName, temp->lName);
 			printf("DOB: %s\n", temp->dob);
@@ -181,9 +181,11 @@ void searchPPSEdit(struct node *top, char pps[9]) {
 	while (temp != NULL) {
 		if (strcmp(temp->pps, pps) == 0) {
 			do {
-				printf("(1) Edit First Name\n(2) Edit Last Name\n(3) Edit Gender\n(4) Edit Email\n(5) Edit Next Of Kin\n(6) Edit Weight\n"
+				printf("---------------------------------------\n");
+				printf("\n(1) Edit First Name\n(2) Edit Last Name\n(3) Edit Gender\n(4) Edit Email\n(5) Edit Next Of Kin\n(6) Edit Weight\n"
 					"(7) Edit Height\n(8) Edit Smoking Details\n(9) Edit Alcohol Details\n(10) Edit Exercise Details\n(0) Main Menu\n");
 				scanf("%d", &choice);
+				printf("---------------------------------------\n");
 				switch (choice) {
 
 				case 1:

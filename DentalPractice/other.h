@@ -3,6 +3,4 @@
 
 float BMI(float h, float w);
 
-
-
 #endif
