@@ -3,6 +3,30 @@
 //Darragh Lally - G00220290
 //Visual Studio 2017 - Version 15.8.8
 
+/*
+(1) Run main.c
+
+(2) Use login details -
+
+	username: martin
+	password: mhynes
+
+	username: admin
+	password: 123456
+
+	username: test
+	password: 654321
+
+	username: daza
+	password: 666666
+
+	Or - add your own to login.txt in the project folder - Very secure :)
+
+(3) Use menu to navigate
+
+Note: Database has some patient details loaded when correct login details are entered
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -13,6 +37,7 @@
 #include"load.h"
 #include"outputs.h"
 
+//Struct to hold login information
 typedef struct {
 	char fileUserName[11];
 	char filePassWord[7];
@@ -23,21 +48,21 @@ typedef struct {
 void main() {
 
 	//Variables
-	int menuChoice;
+	int menuChoice;//Main menu option
 	int editChoice;//Edit patient
 	char fNameIn[11];//Edit patient
 	char lNameIn[11];//Edit patient
-	char ppsIn[9];//edit patient
-	struct node* headPtr = NULL;
-	char searchPPS[9];
+	char ppsIn[9];//Edit patient
+	char searchPPS[9];//search
 	int searchChoice; //search option 3
-	char searchFirst[11];
-	char searchLast[11];
-	int totalPatients;
+	char searchFirst[11]; //search via name
+	char searchLast[11]; //search via name
+	int totalPatients;//Stats 
 	char userName[11];//Login
-	char passWord[7];
-	int numInputs;
-	int i = 0;
+	char passWord[7]; //login
+	int numInputs; //file read validation
+	int i = 0; //loop control
+	struct node* headPtr = NULL;
 
 	FILE* readLogin; //pointer to login file
 	readLogin = fopen("login.txt", "r"); //open login
@@ -192,15 +217,12 @@ void main() {
 						int pos = findPos(headPtr, searchPPS);
 						if (pos == 1) {
 							deleteElementAtStart(&headPtr);
-							printf("Patient record deleted\n");
 						}
 						else if(pos<listLength(headPtr)){
 							deleteElementAtPos(headPtr, pos);
-							printf("Patient record deleted\n");
 						}
 						else {
 							deleteElementAtEnd(headPtr);
-							printf("Patient record deleted\n");
 						}
 						break;
 
@@ -211,7 +233,7 @@ void main() {
 						break;
 
 					case 7:
-						//Create Report.txt
+						//Create report.txt - User readable report on all patients
 						reportPrint(headPtr);
 						printf("Report Generated...\n\n");
 						break;
@@ -221,16 +243,14 @@ void main() {
 						break;
 
 					case -1:
-						//print database to file patient.txt
+						//Exit and print database to file patient.txt
 						filePrint(headPtr); 
 						printf("Exiting...\n\n\n");					
 						break;
 
-					default:
-			
+					default:			
 						break;
 					}
-		
 				} while (menuChoice != -1);
 			}//if
 
