@@ -340,6 +340,8 @@ void searchPPSEdit(struct node *top, char pps[9]) {
 		}
 		temp = temp->NEXT;
 	}
+
+	printf("Patient Details Updated...\n");
 }
 
 //Search and edit patient via name
@@ -517,6 +519,7 @@ void searchNameEdit(struct node *top, char first[11], char last[11]) {
 		}//if
 		temp = temp->NEXT;
 	}//while
+	printf("Patient Details Updated...\n");
 }//searchNameEdit
 
 //Find position in list passed on patient pps, return value and use for delete function

@@ -262,9 +262,6 @@ void main() {
 	}//else
 }//main()
 
-///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S ///////////////// F U N C T I O N S \\\\\\\\\\\\\\\\\ F U N C T I O N S /////////////////
-
-
 
 
 
