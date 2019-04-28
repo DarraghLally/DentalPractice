@@ -9,9 +9,9 @@ Last App: 12/12/12
 Weight: 123.00
 Height: 123.00
 Allergies: N
-Smoke: 1
-Alcohol: 2
-Exercise: 3
+SMOKER: No
+ALCOHOL: Less than 10 units per week
+EXCERCISE: More than 2 per week
 BMI: 81.30
 ---------------------------------------
 PPS: 7676767A
@@ -25,9 +25,9 @@ Last App: 12/12/12
 Weight: 8.00
 Height: 20.00
 Allergies: N
-Smoke: 1
-Alcohol: 1
-Exercise: 1
+SMOKER: No
+ALCOHOL: None
+EXCERCISE: None
 BMI: 200.00
 ---------------------------------------
 PPS: 1111111A
@@ -41,9 +41,9 @@ Last App: 12/12/12
 Weight: 82.50
 Height: 185.40
 Allergies: N
-Smoke: 2
-Alcohol: 1
-Exercise: 2
+SMOKER: Less than 10 per day
+ALCOHOL: None
+EXCERCISE: Less than 2 per week
 BMI: 24.00
 ---------------------------------------
 PPS: 3333333A
@@ -57,9 +57,9 @@ Last App: 12/12/12
 Weight: 20.00
 Height: 20.00
 Allergies: N
-Smoke: 1
-Alcohol: 1
-Exercise: 1
+SMOKER: No
+ALCOHOL: None
+EXCERCISE: None
 BMI: 500.00
 ---------------------------------------
 PPS: 2222222A
@@ -73,9 +73,9 @@ Last App: 27/03/19
 Weight: 60.00
 Height: 160.00
 Allergies: Y
-Smoke: 3
-Alcohol: 3
-Exercise: 1
+SMOKER: More than 10 per day
+ALCOHOL: More than 10 units week
+EXCERCISE: None
 BMI: 23.44
 ---------------------------------------
 PPS: 4545454A
@@ -89,9 +89,9 @@ Last App: 12
 Weight: 77.00
 Height: 190.00
 Allergies: N
-Smoke: 3
-Alcohol: 3
-Exercise: 1
+SMOKER: More than 10 per day
+ALCOHOL: More than 10 units week
+EXCERCISE: None
 BMI: 21.33
 ---------------------------------------
 PPS: 6767676A
@@ -105,9 +105,9 @@ Last App: 12/13/14
 Weight: 85.00
 Height: 175.25
 Allergies: N
-Smoke: 1
-Alcohol: 1
-Exercise: 3
+SMOKER: No
+ALCOHOL: None
+EXCERCISE: More than 2 per week
 BMI: 27.68
 ---------------------------------------
 PPS: 1234567A
@@ -121,8 +121,8 @@ Last App: 12/12/12
 Weight: 25.00
 Height: 128.00
 Allergies: N
-Smoke: 1
-Alcohol: 1
-Exercise: 3
+SMOKER: No
+ALCOHOL: None
+EXCERCISE: More than 2 per week
 BMI: 15.26
 ---------------------------------------

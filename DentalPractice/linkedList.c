@@ -274,6 +274,7 @@ void deleteElementAtStart(struct node ** top) {
 	temp = *top;
 	*top = temp->NEXT;
 	free(temp);
+	printf("Patient record deleted\n");
 }
 
 //Delete from end
@@ -288,6 +289,7 @@ void deleteElementAtEnd(struct node * top) {
 	}
 	prevTemp->NEXT = NULL;
 	free(temp);
+	printf("Patient record deleted\n");
 }
 
 //Delete from Position, position found through patient PPS number
@@ -305,6 +307,7 @@ void deleteElementAtPos(struct node * top, int position) {
 
 	prevTemp->NEXT = temp->NEXT;
 	free(temp);
+	printf("Patient record deleted\n");
 }
 
 //Return the length of the database

@@ -58,10 +58,10 @@ void printList(struct node *top) {
 			printf("EXCERCISE: None\n");
 			break;
 		case 2:
-			printf("EXCERCISE: Less than 2 per week\n");
+			printf("EXCERCISE: Less than twice per week\n");
 			break;
 		case 3:
-			printf("EXCERCISE: More than 2 per week\n");
+			printf("EXCERCISE: More than twice per week\n");
 			break;
 		default:
 			printf("EXCERCISE INPUT BROKEN\n");
@@ -92,7 +92,6 @@ void printStats(struct node *top, int total) {
 	//File pointer & open as patient.txt
 	FILE* output;
 	output = fopen("stats.txt", "a");
-
 
 	//Generate on either: Smoke or Exercise
 	printf("Generate BMI statistics based on one of the following:\n(1) Cigarette Intake\n(2) Exercise Amount\n(0) Back\n\n");
@@ -125,25 +124,53 @@ void printStats(struct node *top, int total) {
 			temp = temp->NEXT;
 		}
 
-		//Find and store %'s
+		//Find and store %'s - 
+		//calculation: (total number of patients who fit the requirements) / (total number of patients in database) * 100
+		//totals need to be cast to floats because I am taking the info in as ints but want to display % accuratly
 		aVal = ((float)totalOne / (float)patientTotal) * 100;
 		bVal = ((float)totalTwo / (float)patientTotal) * 100;
 		cVal = ((float)totalThree / (float)patientTotal) * 100;
 		dVal = ((float)totalFour / (float)patientTotal) * 100;
 
-		//Print to console
-		printf("SMOKER STATS\n");
+		//Print stats to console
+		printf("\n---------------------------------------\nSMOKER STATS\n");
+		switch (smokeChoice) {
+		case 1:
+			printf("Based on Non-Smokers\n\n");
+			break;
+		case 2:
+			printf("Based on less than ten per day\n\n");
+			break;
+		case 3:
+			printf("Based on greater than ten per day\n\n");
+			break;
+		default:
+			printf("\n");
+		}
 		printf("A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
 		printf("B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
 		printf("C: %% of patients with BMI less than 30 -> %.2f%%\n", cVal);
-		printf("D: %% of patients with BMI greater than 30 -> %.2f%%\n\n", dVal);
+		printf("D: %% of patients with BMI greater than 30 -> %.2f%%\n", dVal);
 
 		//Print to file - stats.txt
-		fprintf(output, "SMOKER STATS\n");
+		fprintf(output, "\n---------------------------------------\nSMOKER STATS\n");
+		switch (smokeChoice) {
+		case 1:
+			fprintf(output, "Based on Non-Smokers\n\n");
+			break;
+		case 2:
+			fprintf(output, "Based on less than ten per day\n\n");
+			break;
+		case 3:
+			fprintf(output, "Based on greater than ten per day\n\n");
+			break;
+		default:
+			fprintf(output, "\n");
+		}
 		fprintf(output, "A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
 		fprintf(output, "B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
 		fprintf(output, "C: %% of patients with BMI less than 30 -> %.2f%%\n", cVal);
-		fprintf(output, "D: %% of patients with BMI greater than 30 -> %.2f%%\n\n", dVal);
+		fprintf(output, "D: %% of patients with BMI greater than 30 -> %.2f%%\n", dVal);
 	}
 
 	//Exercise
@@ -173,18 +200,44 @@ void printStats(struct node *top, int total) {
 		dVal = ((float)totalFour / (float)patientTotal) * 100;
 
 		//Console print
-		printf("EXERCISE STATS\n");
+		printf("\n---------------------------------------\nEXERCISE STATS\n");
+		switch (exerciseChoice) {
+		case 1:
+			printf("Based on No Exercise\n\n");
+			break;
+		case 2:
+			printf("Based on less than twice per week\n\n");
+			break;
+		case 3:
+			printf("Based on greater than twice per week\n\n");
+			break;
+		default:
+			printf("\n");
+		}
 		printf("A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
 		printf("B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
 		printf("C: %% of patients with BMI less than 30 -> %.2f%%\n", cVal);
-		printf("D: %% of patients with BMI greater than 30 -> %.2f%%\n\n", dVal);
+		printf("D: %% of patients with BMI greater than 30 -> %.2f%%\n", dVal);
 
 		//File print
-		fprintf(output, "EXERCISE STATS\n");
+		fprintf(output, "\n---------------------------------------\nEXERCISE STATS\n");
+		switch (exerciseChoice) {
+		case 1:
+			fprintf(output, "Based on No Exercise\n\n");
+			break;
+		case 2:
+			fprintf(output, "Based on less than twice per week\n\n");
+			break;
+		case 3:
+			fprintf(output, "Based on greater than twice per week\n\n");
+			break;
+		default:
+			fprintf(output, "\n");
+		}
 		fprintf(output, "A: %% of patients with BMI less than 18.5 -> %.2f%%\n", aVal);
 		fprintf(output, "B: %% of patients with BMI less than 25 -> %.2f%%\n", bVal);
 		fprintf(output, "C: %% of patients with BMI less than 30 -> %.2f%%\n", cVal);
-		fprintf(output, "D: %% of patients with BMI greater than 30 -> %.2f%%\n\n", dVal);
+		fprintf(output, "D: %% of patients with BMI greater than 30 -> %.2f%%\n", dVal);
 	}
 
 	//Close file
@@ -220,9 +273,50 @@ void reportPrint(struct node *top) {
 		fprintf(output, "Weight: %.2f\n", temp->weight);
 		fprintf(output, "Height: %.2f\n", temp->height);
 		fprintf(output, "Allergies: %c\n", temp->allergies);
-		fprintf(output, "Smoke: %d\n", temp->smoke);
-		fprintf(output, "Alcohol: %d\n", temp->alco);
-		fprintf(output, "Exercise: %d\n", temp->exercise);
+		//fprintf(output, "Smoke: %d\n", temp->smoke);
+		//fprintf(output, "Alcohol: %d\n", temp->alco);
+		//fprintf(output, "Exercise: %d\n", temp->exercise);
+		switch (temp->smoke) {
+		case 1:
+			fprintf(output, "SMOKER: No\n");
+			break;
+		case 2:
+			fprintf(output, "SMOKER: Less than 10 per day\n");
+			break;
+		case 3:
+			fprintf(output, "SMOKER: More than 10 per day\n");
+			break;
+		default:
+			fprintf(output, "SMOKER INPUT BROKEN\n");
+		}
+
+		switch (temp->alco) {
+		case 1:
+			fprintf(output, "ALCOHOL: None\n");
+			break;
+		case 2:
+			fprintf(output, "ALCOHOL: Less than 10 units per week\n");
+			break;
+		case 3:
+			fprintf(output, "ALCOHOL: More than 10 units week\n");
+			break;
+		default:
+			fprintf(output, "ALCOHOL INPUT BROKEN\n");
+		}
+
+		switch (temp->exercise) {
+		case 1:
+			fprintf(output, "EXCERCISE: None\n");
+			break;
+		case 2:
+			fprintf(output, "EXCERCISE: Less than 2 per week\n");
+			break;
+		case 3:
+			fprintf(output, "EXCERCISE: More than 2 per week\n");
+			break;
+		default:
+			fprintf(output, "EXCERCISE INPUT BROKEN\n");
+		}
 		fprintf(output, "BMI: %.2f\n", temp->BMI);
 		fprintf(output, "---------------------------------------\n");
 

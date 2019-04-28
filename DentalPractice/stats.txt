@@ -1,6 +1,54 @@
+
+---------------------------------------
 SMOKER STATS
+Based on less than ten per day
+
 A: % of patients with BMI less than 18.5 -> 0.00%
-B: % of patients with BMI less than 25 -> 33.33%
+B: % of patients with BMI less than 25 -> 12.50%
 C: % of patients with BMI less than 30 -> 0.00%
 D: % of patients with BMI greater than 30 -> 0.00%
 
+---------------------------------------
+EXERCISE STATS
+Based on less than twice per week
+
+A: % of patients with BMI less than 18.5 -> 0.00%
+B: % of patients with BMI less than 25 -> 12.50%
+C: % of patients with BMI less than 30 -> 0.00%
+D: % of patients with BMI greater than 30 -> 0.00%
+
+---------------------------------------
+SMOKER STATS
+Based on Non-Smokers
+
+A: % of patients with BMI less than 18.5 -> 12.50%
+B: % of patients with BMI less than 25 -> 0.00%
+C: % of patients with BMI less than 30 -> 12.50%
+D: % of patients with BMI greater than 30 -> 37.50%
+
+---------------------------------------
+EXERCISE STATS
+Based on No Exercise
+
+A: % of patients with BMI less than 18.5 -> 0.00%
+B: % of patients with BMI less than 25 -> 25.00%
+C: % of patients with BMI less than 30 -> 0.00%
+D: % of patients with BMI greater than 30 -> 25.00%
+
+---------------------------------------
+SMOKER STATS
+Based on greater than ten per day
+
+A: % of patients with BMI less than 18.5 -> 0.00%
+B: % of patients with BMI less than 25 -> 0.00%
+C: % of patients with BMI less than 30 -> 0.00%
+D: % of patients with BMI greater than 30 -> 0.00%
+
+---------------------------------------
+SMOKER STATS
+Based on Non-Smokers
+
+A: % of patients with BMI less than 18.5 -> 12.50%
+B: % of patients with BMI less than 25 -> 37.50%
+C: % of patients with BMI less than 30 -> 12.50%
+D: % of patients with BMI greater than 30 -> 37.50%
