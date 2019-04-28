@@ -273,9 +273,6 @@ void reportPrint(struct node *top) {
 		fprintf(output, "Weight: %.2f\n", temp->weight);
 		fprintf(output, "Height: %.2f\n", temp->height);
 		fprintf(output, "Allergies: %c\n", temp->allergies);
-		//fprintf(output, "Smoke: %d\n", temp->smoke);
-		//fprintf(output, "Alcohol: %d\n", temp->alco);
-		//fprintf(output, "Exercise: %d\n", temp->exercise);
 		switch (temp->smoke) {
 		case 1:
 			fprintf(output, "SMOKER: No\n");
