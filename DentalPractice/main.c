@@ -246,7 +246,7 @@ void main() {
 					case -1:
 						//Exit and print database to file patient.txt
 						filePrint(headPtr); 
-						printf("Exiting...\n\n\n");					
+						printf("\n\nExiting...\n\n\n");					
 						break;
 
 					default:			
@@ -257,6 +257,7 @@ void main() {
 
 		}//while
 
+		//If login failed print warning to console, program ends
 		if (isLog == 0) {
 			printf("\nLogin Failed...\n");
 		}
