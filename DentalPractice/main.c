@@ -1,7 +1,7 @@
 //Advanced Procedural Project
 //Dental Practice Patient Database
 //Darragh Lally - G00220290
-//Visual Studio 2017
+//Visual Studio 2017 - Version 15.8.8
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -34,37 +34,53 @@ void main() {
 	char searchFirst[11];
 	char searchLast[11];
 	int totalPatients;
-
-//////////////////////////////////////////////////////////////////	
-
-	//Login
-	char userName[11];
+	char userName[11];//Login
 	char passWord[7];
-	FILE* readLogin;
-	login_t login;
 	int numInputs;
-	int isLogin = 0;
-	readLogin = fopen("login.txt", "r");
+	int i = 0;
 
+	FILE* readLogin; //pointer to login file
+	readLogin = fopen("login.txt", "r"); //open login
+	login_t login; //struct
+
+	//Print Display
+	printf("---------------------------------------\n\nWELCOME TO ABC DENTAL PRACTICE\n\n---------------------------------------\n\n");
+
+	//Prompt and read user input for username and password
 	printf("Enter User Name: \n");
 	scanf("%s", userName);
-	printf("Enter Password: \n");
-	scanf("%s", passWord);
+	printf("\nEnter Password (max 6 characters): \n");
 
+	//Mask user input with * - code from https://www.geeksforgeeks.org/print-in-place-of-characters-for-reading-passwords-in-c/
+	do {
+		passWord[i] = getch();
+		if (passWord[i] != '\r') {
+			printf("*");
+		}
+		i++;
+	} while (passWord[i - 1] != '\r');
+	passWord[i - 1] = '\0';
+
+	//No login
 	if (readLogin == NULL) {
 		//No login file found
 		printf("No Login File Found...\n");
 	}
+	//Login found
 	else {
+
+		//Read login file
 		while (!feof(readLogin)) {
 
+			//Check num of inputs to prevent a re-read of last line in file
 			numInputs = fscanf(readLogin, "%s %s", login.fileUserName, login.filePassWord);
 
+			//Check numInputs and login details - If all ok, run program
 			if (numInputs == 2 && strcmp(userName, login.fileUserName) == 0 && strcmp(passWord, login.filePassWord) == 0)
 			{
-				printf("LOGIN SUCCESS!\n\n");				
+				printf("\n\nLOGIN SUCCESS!\n");				
 
-				//open employee file
+				//open patient file
 				FILE* readIn;
 				readIn = fopen("patient.txt", "r");
 
@@ -92,10 +108,11 @@ void main() {
 				}//else
 
 				do {
-					printf("---------------------------------------\n");
+					//print menu until user enters -1
+					printf("\n---------------------------------------\n");
 					printf("(1) Add Patient\n(2) Display All Patients\n(3) Display Patient Details\n(4) Update Patient Details\n(5) Delete Patient\n"
 						"(6) Generate Statistics\n(7) Create Report\n(8) List All Patients (Ordered by)\n(-1) Exit\n");
-					printf("---------------------------------------\n\n");
+					printf("---------------------------------------\n");
 					scanf("%d", &menuChoice);
 
 					switch (menuChoice) {
@@ -116,9 +133,10 @@ void main() {
 						break;
 
 					case 3:
-						//Search for patient via PPS, print details
+						//Search for patient via PPS or Name, print details
 						do {
-							printf("(1) Search via Name\n(2) Search via PPS\n(0) Back\n");
+							printf("---------------------------------------\n");
+							printf("\n(1) Search via Name\n(2) Search via PPS\n(0) Back\n");
 							scanf("%d", &searchChoice);
 							if (searchChoice == 1) {
 								printf("Enter First Name:\n");
@@ -181,7 +199,8 @@ void main() {
 							printf("Patient record deleted\n");
 						}
 						else {
-							break;
+							deleteElementAtEnd(headPtr);
+							printf("Patient record deleted\n");
 						}
 						break;
 

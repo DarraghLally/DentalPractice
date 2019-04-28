@@ -91,36 +91,36 @@ void addElementAtStart(struct node ** top) {
 	
 	/*Multiple choice responses w/ input validation*/
 	//Cigerette intake
-	printf("How many Cigerettes per Day? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+	printf("How many Cigerettes per Day? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 	scanf("%d", &smoke);
 	valSmoke = validMultiChoice(smoke);
 	while (valSmoke != 1) {
 		printf("Invaild input, please try again...\n");
-		printf("How many Cigerettes per Day? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+		printf("How many Cigerettes per Day? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 		scanf("%d", &smoke);
 		valSmoke = validMultiChoice(smoke);
 	}
 	newNode->smoke = smoke;
 
 	//Alcohol intake
-	printf("How many Alcohol units per Week? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+	printf("How many Alcohol units per Week? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 	scanf("%d", &alco);
 	valAlco = validMultiChoice(alco);
 	while (valAlco != 1) {
 		printf("Invaild input, please try again...\n");
-		printf("How many Alcohol units per Week? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+		printf("How many Alcohol units per Week? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 		scanf("%d", &alco);
 		valAlco = validMultiChoice(alco);
 	}
 	newNode->alco = alco;
 
 	//Exercise intake
-	printf("How much Excerise per Week? :\n\t(1) None\n\t(2) Less than 2\n\t(3) More than 2\n");
+	printf("How much Excerise per Week? :\n(1) None\n(2) Less than 2\n(3) More than 2\n");
 	scanf("%d", &exercise);
 	valExercise = validMultiChoice(exercise);
 	while (valExercise != 1) {
 		printf("Invaild input, please try again...\n");
-		printf("How much Excerise per Week? :\n\t(1) None\n\t(2) Less than 2\n\t(3) More than 2\n");
+		printf("How much Excerise per Week? :\n(1) None\n(2) Less than 2\n(3) More than 2\n");
 		scanf("%d", &exercise);
 		valExercise = validMultiChoice(exercise);
 	}
@@ -226,36 +226,36 @@ void addElementToEnd(struct node *top) {
 
 	//Multiple choice responses w/ input validation
 	//Cigerette intake
-	printf("How many Cigerettes per Day? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+	printf("How many Cigerettes per Day? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 	scanf("%d", &smoke);
 	valSmoke = validMultiChoice(smoke);
 	while (valSmoke != 1) {
 		printf("Invaild input, please try again...\n");
-		printf("How many Cigerettes per Day? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+		printf("How many Cigerettes per Day? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 		scanf("%d", &smoke);
 		valSmoke = validMultiChoice(smoke);
 	}
 	newNode->smoke = smoke;
 
 	//Alcohol intake
-	printf("How many Alcohol units per Week? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+	printf("How many Alcohol units per Week? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 	scanf("%d", &alco);
 	valAlco = validMultiChoice(alco);
 	while (valAlco != 1) {
 		printf("Invaild input, please try again...\n");
-		printf("How many Alcohol units per Week? :\n\t(1) None\n\t(2) Less than 10\n\t(3) More than 10\n");
+		printf("How many Alcohol units per Week? :\n(1) None\n(2) Less than 10\n(3) More than 10\n");
 		scanf("%d", &alco);
 		valAlco = validMultiChoice(alco);
 	}
 	newNode->alco = alco;
 
 	//Exercise intake
-	printf("How much Excerise per Week? :\n\t(1) None\n\t(2) Less than 2\n\t(3) More than 2\n");
+	printf("How much Excerise per Week? :\n(1) None\n(2) Less than 2\n(3) More than 2\n");
 	scanf("%d", &exercise);
 	valExercise = validMultiChoice(exercise);
 	while (valExercise != 1) {
 		printf("Invaild input, please try again...\n");
-		printf("How much Excerise per Week? :\n\t(1) None\n\t(2) Less than 2\n\t(3) More than 2\n");
+		printf("How much Excerise per Week? :\n(1) None\n(2) Less than 2\n(3) More than 2\n");
 		scanf("%d", &exercise);
 		valExercise = validMultiChoice(exercise);
 	}
@@ -288,7 +288,6 @@ void deleteElementAtEnd(struct node * top) {
 	}
 	prevTemp->NEXT = NULL;
 	free(temp);
-
 }
 
 //Delete from Position, position found through patient PPS number
@@ -306,71 +305,6 @@ void deleteElementAtPos(struct node * top, int position) {
 
 	prevTemp->NEXT = temp->NEXT;
 	free(temp);
-}
-
-//Print Patient details to screen - Option 2
-void printList(struct node *top) {
-	struct node* temp;
-	temp = top;
-	while (temp != NULL) {
-		printf("***********************************************************************\n");
-		printf("PPS: %s\n", temp->pps);
-		printf("NAME: %s %s\n", temp->fName, temp->lName);
-		printf("DOB: %s\n", temp->dob);
-		printf("GENDER: %c\n", temp->gender);
-		printf("EMAIL: %s\n", temp->email);
-		printf("NEXT OF KIN: %s %s\n", temp->fKin, temp->lKin);
-		printf("LAST APPOINTMENT DATE: %s\n", temp->lastApp);
-		printf("WEIGHT - kg: %.3f\n", temp->weight);
-		printf("HEIGHT - cm: %.3f\n", temp->height);
-		printf("ALLERGIES TO MEDS: %c\n", temp->allergies);
-
-		switch (temp->smoke) {
-		case 1:
-			printf("SMOKER: No\n");
-			break;
-		case 2:
-			printf("SMOKER: Less than 10 per day\n");
-			break;
-		case 3:
-			printf("SMOKER: More than 10 per day\n");
-			break;
-		default:
-			printf("SMOKER INPUT BROKEN\n");
-		}
-
-		switch (temp->alco) {
-		case 1:
-			printf("ALCOHOL: None\n");
-			break;
-		case 2:
-			printf("ALCOHOL: Less than 10 units per week\n");
-			break;
-		case 3:
-			printf("ALCOHOL: More than 10 units week\n");
-			break;
-		default:
-			printf("ALCOHOL INPUT BROKEN\n");
-		}
-
-		switch (temp->exercise) {
-		case 1:
-			printf("EXCERCISE: None\n");
-			break;
-		case 2:
-			printf("EXCERCISE: Less than 2 per week\n");
-			break;
-		case 3:
-			printf("EXCERCISE: More than 2 per week\n");
-			break;
-		default:
-			printf("EXCERCISE INPUT BROKEN\n");
-		}
-
-		printf("BMI: %.2f\n", temp->BMI);
-
-		temp = temp->NEXT;
-	}
 }
 
 //Return the length of the database
