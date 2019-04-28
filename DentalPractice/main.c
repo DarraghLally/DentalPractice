@@ -17,9 +17,6 @@
 	username: test
 	password: 654321
 
-	username: daza
-	password: 666666
-
 	Or - add your own to login.txt in the project folder - Very secure :)
 
 (3) Use menu to navigate
@@ -60,6 +57,7 @@ void main() {
 	int totalPatients;//Stats 
 	char userName[11];//Login
 	char passWord[7]; //login
+	int isLog = 0;
 	int numInputs; //file read validation
 	int i = 0; //loop control
 	struct node* headPtr = NULL;
@@ -76,7 +74,7 @@ void main() {
 	scanf("%s", userName);
 	printf("\nEnter Password (max 6 characters): \n");
 
-	//Mask user input with * - code from https://www.geeksforgeeks.org/print-in-place-of-characters-for-reading-passwords-in-c/
+	//Mask user password input with * - code from https://www.geeksforgeeks.org/print-in-place-of-characters-for-reading-passwords-in-c/
 	do {
 		passWord[i] = getch();
 		if (passWord[i] != '\r') {
@@ -103,7 +101,10 @@ void main() {
 			//Check numInputs and login details - If all ok, run program
 			if (numInputs == 2 && strcmp(userName, login.fileUserName) == 0 && strcmp(passWord, login.filePassWord) == 0)
 			{
-				printf("\n\nLOGIN SUCCESS!\n");				
+				printf("\n\nLOGIN SUCCESS!\n");	
+
+				//acting as true false for failed log in
+				isLog++;
 
 				//open patient file
 				FILE* readIn;
@@ -136,7 +137,7 @@ void main() {
 					//print menu until user enters -1
 					printf("\n---------------------------------------\n");
 					printf("(1) Add Patient\n(2) Display All Patients\n(3) Display Patient Details\n(4) Update Patient Details\n(5) Delete Patient\n"
-						"(6) Generate Statistics\n(7) Create Report\n(8) List All Patients (Ordered by)\n(-1) Exit\n");
+						"(6) Generate Statistics\n(7) Create Report\n(-1) Exit\n");
 					printf("---------------------------------------\n");
 					scanf("%d", &menuChoice);
 
@@ -256,10 +257,16 @@ void main() {
 
 		}//while
 
+		if (isLog == 0) {
+			printf("\nLogin Failed...\n");
+		}
+
 		//close login file
 		fclose(readLogin);
-
+		
 	}//else
+
+	
 }//main()
 
 
